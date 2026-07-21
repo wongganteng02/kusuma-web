@@ -1,0 +1,2183 @@
+<!doctype html>
+<html lang="id" id="html-tag" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Magnum Opus Pengembangan Web: Panduan Komprehensif Dasar PHP &amp; Pemrograman
+      Sisi Server | DeriKusuma
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- SKRIP DETEKSI DINI (Mengecek mode terakhir sebelum halaman digambar) -->
+    <script>
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      if (savedTheme === "light") {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.classList.add("light");
+      }
+    </script>
+
+    <style>
+      body {
+        transition:
+          background-color 0.3s,
+          color 0.3s;
+      }
+      /* --- KUSTOMISASI CSS ARTIKEL MODE TERANG --- */
+      .light body {
+        background-color: #f4f7f5;
+        background-image: none !important;
+        color: #111827;
+      }
+      .light .glasscard {
+        background: #ffffff !important;
+        border-color: #e5e7eb !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      }
+      .light h1,
+      .light h2,
+      .light h3,
+      .light h4 {
+        color: #111827 !important;
+      }
+      .light p,
+      .light li {
+        color: #4b5563 !important;
+      }
+      .light pre,
+      .light code:not(.fa-*) {
+        background-color: #f3f4f6 !important;
+        color: #111827 !important;
+        border-color: #d1d5db !important;
+      }
+      .light a[href="../index.html"] {
+        background-color: #ffffff !important;
+        border-color: #d1d5db !important;
+        color: #059669 !important;
+      }
+      .light a[href="../index.html"]:hover {
+        background-color: #f3f4f6 !important;
+      }
+      .light .text-slate-400,
+      .light .text-slate-400 span {
+        color: #4b5563 !important;
+      }
+      .light .border-slate-800\/60 {
+        border-color: #d1d5db !important;
+      }
+      .light .mb-12 span {
+        background-color: #ffffff !important;
+        color: #059669 !important;
+        border-color: #e5e7eb !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      }
+      .light article .text-slate-300,
+      .light article .text-slate-400,
+      .light article .text-slate-500,
+      .light article span:not(.font-bold) {
+        color: #4b5563 !important;
+      }
+      .light article strong,
+      .light article font {
+        color: #111827 !important;
+      }
+      html.dark .font-mono p.text-xs {
+        color: #cbd5e1 !important;
+        background-color: rgba(0, 0, 0, 0.4) !important;
+        border-color: #334155 !important;
+      }
+      html.light .font-mono > div {
+        background-color: #f8fafc !important;
+        border-color: #e5e7eb !important;
+      }
+      html.light .font-mono p.text-xs {
+        color: #111827 !important;
+        background-color: #ffffff !important;
+        border-color: #d1d5db !important;
+      }
+      .light nav {
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        border-color: #e5e7eb !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      }
+      .light nav a,
+      .light nav button {
+        color: #4b5563 !important;
+      }
+      .light #mobile-menu a:not([href="../index.html"]) {
+        color: #4b5563 !important;
+      }
+      .light #mobile-menu a:not([href="../index.html"]):hover {
+        background-color: #f3f4f6 !important;
+        color: #059669 !important;
+      }
+      .light #hamburger-btn {
+        color: #4b5563 !important;
+      }
+      .light article p,
+      .light article li {
+        color: #4b5563 !important;
+      }
+      .light article span.uppercase.tracking-wider {
+        color: #059669 !important;
+      }
+      .light pre,
+      .light pre code,
+      .light .font-mono pre {
+        background-color: #111827 !important;
+        color: #34d399 !important;
+      }
+      .light article strong,
+      .light article h2,
+      .light article h3 {
+        color: #111827 !important;
+      }
+
+      /* TEKS HANDLING & WORD WRAP ANTI MELUBER */
+      article pre,
+      article code,
+      .glasscard pre {
+        white-space: pre-wrap !important;
+        word-break: break-all !important;
+        word-wrap: break-word !important;
+      }
+      article p,
+      article li,
+      article span {
+        white-space: normal !important;
+        word-break: normal !important;
+        word-wrap: break-word !important;
+        text-align: justify !important;
+      }
+
+      /* 🟩 TEMA GRADASI EMERALD MATRIX TECH */
+      .light .gradient-text {
+        background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .dark .gradient-text {
+        background: linear-gradient(
+          135deg,
+          #34d399 0%,
+          #ffffff 60%,
+          #059669 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .dark .glasscard {
+        background: rgba(9, 17, 28, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(52, 211, 153, 0.15);
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(52, 211, 153, 0.05);
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen py-12 px-4 md:px-12 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black selection:bg-emerald-500 selection:text-slate-950"
+  >
+    <div class="max-w-5xl mx-auto">
+      <!-- ─── NAVBAR ADAPTIF SINKRON SANGAT HARMONIS ─── -->
+      <div class="w-full max-w-6xl mx-auto px-4 absolute top-4 left-0 right-0 z-50">
+        <nav class="glasscard backdrop-blur-md bg-slate-950/70 border border-emerald-500/20 rounded-2xl px-5 py-4 transition-all duration-300 w-full">
+          <div class="flex items-center justify-between w-full">
+            <a href="../index.html" class="inline-flex items-center shrink-0">
+              <img 
+                src="../gambar/logo-header.png" 
+                alt="KusumaWeb Logo" 
+                class="h-8 md:h-16 w-auto object-contain contrast-150 brightness-110 hover:scale-105 transition-transform duration-200"
+              />
+            </a>
+
+            <div class="flex items-center gap-3 md:gap-4">
+              <button
+                id="mode-toggle"
+                class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-300 focus:outline-none dark:bg-emerald-500 bg-slate-300"
+                role="switch"
+                aria-checked="false"
+              >
+                <span
+                  id="toggle-dot"
+                  class="pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform duration-300 translate-x-0 flex items-center justify-center"
+                >
+                  <i id="mode-icon" class="text-[10px] text-slate-700 fas fa-moon"></i>
+                </span>
+              </button>
+
+              <button
+                id="hamburger-btn"
+                class="text-slate-300 hover:text-emerald-400 focus:outline-none text-xl transition-colors cursor-pointer p-1"
+                aria-label="Toggle Menu"
+              >
+                <i id="hamburger-icon" class="fas fa-bars"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- DROPDOWN CONTAINER UTAMA ACCORDION -->
+          <div
+            id="mobile-menu"
+            class="hidden border-t border-emerald-500/20 mt-4 pt-4 space-y-2 text-sm font-semibold text-slate-300 transition-all duration-300"
+          >
+            <a href="../index.html#home" class="block py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all">Home</a>
+
+            <a href="../install-vscode/artikel-install-vscode.html" class="block py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-blue-400 transition-all flex items-center justify-between group">
+              <span class="flex items-center gap-2">
+                <i class="fas fa-terminal text-blue-500 text-xs"></i>
+                Install VSCode
+              </span>
+              <i class="fas fa-chevron-right text-[10px] text-slate-500 group-hover:text-blue-400 transition-transform group-hover:translate-x-1"></i>
+            </a>
+
+            <div>
+              <button
+                id="aktifitas-toggle-btn"
+                class="w-full flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all text-left font-semibold cursor-pointer text-slate-300 focus:outline-none"
+              >
+                <span>Aktivitas</span>
+                <i id="aktifitas-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+              </button>
+              <div id="aktifitas-submenu" class="hidden pl-6 mt-1 space-y-1 border-l-2 border-emerald-500/30">
+                <a href="../aktivitas/haflah-diniyah.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Haflah Attasyakur Al-Ibrohimi</a>
+                <a href="../aktivitas/haflah-akhirussanah.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Haflah Akhirussanah Al-Ibrohimi</a>
+                <a href="../aktivitas/buthak.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Pendakian Gunung Buthak</a>
+              </div>
+            </div>
+
+            <div>
+              <button
+                id="submenu-toggle-btn"
+                class="w-full flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all text-left font-semibold cursor-pointer text-slate-300 focus:outline-none"
+              >
+                <span>Artikel</span>
+                <i id="submenu-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+              </button>
+              <div id="articles-submenu" class="hidden pl-6 mt-1 space-y-1 border-l-2 border-emerald-500/30">
+                <a href="../artikel/artikel-ai.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Masa Depan AI</a>
+                <a href="../artikel/artikel-python.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Panduan Python</a>
+                <a href="../artikel/artikel-vibe-coding.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Ancaman Vibe Coding</a>
+                <a href="../artikel/artikel-wifi-serem.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Captive Portal Wi-Fi</a>
+                <a href="../artikel/artikel-sperm-run.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Game Sperm Run</a>
+                <a href="../artikel/artikel-web-statis.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Web Static</a>
+              </div>
+            </div>
+
+            <div>
+              <button
+                id="project-toggle-btn"
+                class="w-full flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all text-left font-semibold cursor-pointer text-slate-300 focus:outline-none"
+              >
+                <span>My Project</span>
+                <i id="project-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+              </button>
+              <div id="project-submenu" class="hidden pl-6 mt-1 space-y-1 border-l-2 border-emerald-500/30">
+                <a href="../artikel/artikel-wifi-serem.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fas fa-globe mr-2 text-sky-400 w-4 text-center"></i>IoT Wi-Fi Prank</a>
+                <a href="../artikel/artikel-sperm-run.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fas fa-gamepad mr-2 text-zinc-400 w-4 text-center"></i>IoT Games</a>
+                <a href="../my-project/project-bell.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fas fa-bell mr-2 text-emerald-400 w-4 text-center"></i>IoT Bel Otomatis</a>
+                <a href="../my-project/project-eyes.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fas fa-eye mr-2 text-emerald-400 w-4 text-center"></i>IoT Expressive Eyes</a>
+              </div>
+            </div>
+
+            <div>
+              <button
+                id="dasar-toggle-btn"
+                class="w-full flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all text-left font-semibold cursor-pointer text-slate-300 focus:outline-none"
+              >
+                <span>Pemrograman Dasar</span>
+                <i id="dasar-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+              </button>
+              <div id="dasar-submenu" class="hidden pl-6 mt-1 space-y-1 border-l-2 border-zinc-700">
+                <a href="dasar-html.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fab fa-html5 mr-2 text-orange-500"></i>Dasar HTML &amp; Struktur Web</a>
+                <a href="dasar-css.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fab fa-css3-alt mr-2 text-blue-500"></i>Dasar CSS &amp; Styling Estetik</a>
+                <a href="dasar-javascript.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fab fa-js mr-2 text-yellow-500"></i>Logika Dasar JavaScript</a>
+                <a href="dasar-python.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fab fa-python mr-2 text-blue-400 w-4 text-center"></i>Pemrograman Python</a>
+                <a href="dasar-java.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fab fa-java mr-2 text-red-400 w-4 text-center"></i>Pemrograman Java</a>
+                <a href="dasar-php.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fab fa-php mr-2 text-zinc-400 w-4 text-center"></i>Pemrograman PHP</a>
+                <a href="dasar-cpp.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fas fa-code mr-2 text-sky-400 w-4 text-center"></i>Pemrograman C++</a>
+                <a href="dasar-kotlin.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fab fa-android mr-2 text-emerald-400 w-4 text-center"></i>Pemrograman Kotlin</a>
+                <a href="dasar-sistem-digital.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fas fa-microchip mr-2 text-zinc-400 w-4 text-center"></i>Sistem Digital</a>
+                <a href="dasar-matematika-informatika.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fas fa-calculator mr-2 text-cyan-400 w-4 text-center"></i>Matematika Informatika</a>
+              </div>
+            </div>
+
+            <div>
+              <button
+                id="tools-toggle-btn"
+                class="w-full flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all text-left font-semibold cursor-pointer text-slate-300 focus:outline-none"
+              >
+                <span>Tools</span>
+                <i id="tools-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+              </button>
+              <div id="tools-submenu" class="hidden pl-6 mt-1 space-y-1 border-l-2 border-emerald-500/30">
+                <a href="../tools/converter-datahex.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-white transition-all rounded-md hover:bg-emerald-500/5"><i class="fas fa-tools mr-2 text-sky-400 w-4 text-center"></i>Convert DataHex</a>
+                <a href="../tools/kalkulator-digital.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-white transition-all rounded-md hover:bg-emerald-500/5"><i class="fas fa-terminal mr-2 text-yellow-400 w-4 text-center"></i>Kalkulator Digital</a>
+                <a href="../tools/converter-base64.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-white transition-all rounded-md hover:bg-emerald-500/5"><i class="fas fa-tools mr-2 text-red-400 w-4 text-center"></i>Convert Base64</a>
+                <a href="../tools/converter-resize.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-white transition-all rounded-md hover:bg-emerald-500/5"><i class="fas fa-file mr-2 text-green-400 w-4 text-center"></i>Resize File</a>
+                <a href="../tools/color-generate.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-white transition-all rounded-md hover:bg-emerald-500/5"><i class="fas fa-palette mr-2 text-slate-400 w-4 text-center"></i>Color Generate</a>
+              </div>
+            </div>
+
+            <a
+              href="../chatbot-ai/ai.html"
+              class="block py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all flex items-center gap-2 font-semibold text-slate-300"
+            >
+              <i class="fas fa-robot text-emerald-400 w-4 text-center"></i>
+              Chatbot AI
+            </a>
+
+            <a href="../index.html#about" class="block py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all">Tentang Saya</a>
+            <a href="https://wa.me/6282332959952" class="block py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all">Kontak</a>
+          </div>
+        </nav>
+      </div>
+
+      <!-- ISI KONTEN ARTIKEL -->
+      <article class="pt-20 w-full -mt-3 overflow-hidden">
+        <div class="flex flex-wrap gap-2.5">
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-400/15 text-cyan-300 border border-cyan-400/20 uppercase tracking-widest">
+            Server-Side Scripting
+          </span>
+          <span
+            class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-widest"
+          >
+            Programming Logic &amp; Syntax
+          </span>
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-neutral-500/10 text-neutral-400 border border-neutral-500/20 uppercase tracking-widest">
+            <i class="fab fa-php mr-1.5"></i>PHP Fundamental
+          </span>
+        </div>
+        <br />
+
+        <h1
+          class="text-3xl md:text-6xl font-extrabold text-white leading-tight mt-2 bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-500"
+        >
+          Pengembangan Web Sisi Server: Eksplorasi Dasar PHP pada Sistem Dinamis
+          &amp; Interaktif
+        </h1>
+
+        <!-- METADATA ARTIKEL -->
+        <div
+          class="flex flex-col sm:flex-row sm:items-center justify-center gap-3 sm:gap-4 text-xs md:text-sm text-slate-400 mt-4"
+        >
+          <span class="flex items-center gap-1.5">
+            <i class="far fa-user text-emerald-400"></i> Penulis: Tim Kusuma Web Dev
+          </span>
+          <span class="hidden sm:inline text-slate-600">•</span>
+          <span class="flex items-center gap-1.5">
+            <i class="far fa-calendar-alt text-emerald-400"></i> Diterbitkan: 18 Juni 2026
+          </span>
+          <span class="hidden sm:inline text-slate-600">•</span>
+          <span class="flex items-center gap-1.5">
+            <i class="far fa-clock text-emerald-400"></i> Waktu Baca: 45 Menit
+          </span>
+        </div>
+
+        <!-- BANNER UTAMA -->
+        <div
+          class="w-full h-64 md:h-[450px] rounded-3xl overflow-hidden glasscard shadow-2xl relative group mt-6"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?q=80&amp;w=1200&amp;auto=format&amp;fit=crop"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+            alt="PHP Code on Screen"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"
+          ></div>
+        </div>
+
+        <!-- MATERI INTI -->
+        <div
+          class="text-slate-300 leading-relaxed text-base md:text-lg space-y-12 pt-6 text-justify"
+        >
+          <p class="!text-left text-slate-300">
+            Pengembangan sistem web yang dinamis membutuhkan pemahaman mendalam
+            tentang eksekusi instruksi di sisi server (server-side scripting).
+            Di sinilah PHP memegang peran sentral. Berikut adalah penjelasan
+            lengkap dan berurutan dari
+            <strong>15 modul pembelajaran Dasar Pemrograman PHP</strong> untuk
+            membantu Anda menguasai teknologi ini secara bertahap dan
+            menyeluruh.
+          </p>
+
+          <!-- BAB I: FONDASI LINGKUNGAN KERJA & VARIABEL -->
+          <section class="space-y-6">
+            <h2
+              class="text-2xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-3 border-b border-slate-800 pb-2"
+            >
+              <i class="fas fa-server text-emerald-400 text-xl"></i>
+              Bab I: Penyiapan Lingkungan &amp; Sintaks Dasar
+            </h2>
+            <p class="!text-left text-slate-300">
+              Sebelum menulis kode PHP, penyiapan server lokal serta pemahaman
+              aturan mendasar sangat krusial. PHP adalah bahasa pemrograman
+              interpretatif yang dieksekusi di server lokal sebelum diubah
+              menjadi format HTML di browser klien.
+            </p>
+
+            <!-- Modul 1 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 01</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >Instalasi</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Pengenalan PHP &amp; Setup Lingkungan Server Lokal
+              </h3>
+              <p class="text-sm text-slate-400">
+                Langkah awal mempelajari PHP adalah menyiapkan server lokal.
+                Kita mengunduh dan melakukan instalasi paket perangkat lunak
+                seperti XAMPP atau Laragon yang menyatukan Apache Web Server,
+                PHP Compiler, dan Database MariaDB. Setelah instalasi selesai,
+                folder direktori kerja diarahkan ke dalam subfolder khusus
+                bernama
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >htdocs</code
+                >
+                atau
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >www</code
+                >
+                agar skrip dapat dipanggil di browser menggunakan tautan lokal.
+              </p>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 1</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_01.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_1_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 01
+                </a>
+              </div>
+            </div>
+
+            <!-- Modul 2 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 02</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >Sintaks</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Aturan Sintaks Dasar, Tag PHP, &amp; Perintah Output
+              </h3>
+              <p class="text-sm text-slate-400">
+                PHP dieksekusi di dalam penampung tag khusus
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >&lt;?php ... ?&gt;</code
+                >. Setiap baris kode wajib diakhiri dengan tanda titik koma
+                (semicolon). Output dicetak menggunakan perintah
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >echo</code
+                >, atau dengan tag cetak instan shorthand
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >&lt;?= $variabel; ?&gt;</code
+                >
+                di dalam struktur dokumen HTML.
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]">index.php</span>
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+echo "Halo Dunia, Selamat Belajar PHP!";
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 2</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_02.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_2_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 02
+                </a>
+              </div>
+            </div>
+
+            <!-- Modul 3 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 03</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >Variabel</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Variabel, Konstanta, &amp; Aturan Penulisan Pengenal
+              </h3>
+              <p class="text-sm text-slate-400">
+                Variabel pada PHP dideklarasikan menggunakan simbol dollar
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >$</code
+                >. PHP bersifat "loosely typed", artinya tipe data variabel akan
+                didefinisikan secara otomatis sesuai nilainya. Sementara untuk
+                nilai tetap yang konstan dan tidak bisa dimodifikasi selama
+                eksekusi program, dideklarasikan menggunakan fungsi
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >define()</code
+                >
+                atau keyword
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >const</code
+                >.
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]">variabel.php</span>
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+$nama_lengkap = "Deri Kusuma";
+const KAMPUS = "Kusuma Web Academy";
+echo "Siswa: " . $nama_lengkap . " di " . KAMPUS;
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 3</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_03.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_3_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 03
+                </a>
+              </div>
+            </div>
+
+            <!-- Modul 4 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 04</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >Data Types</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Eksplorasi Tipe Data Primitif &amp; Debugging
+              </h3>
+              <p class="text-sm text-slate-400">
+                PHP mendukung tipe data primitif yang mencakup String (teks),
+                Integer (angka bulat), Float (desimal), dan Boolean (kondisi
+                benar/salah). Untuk membantu proses analisis nilai dan tipe data
+                dari suatu variabel secara mendetail, kita menggunakan fungsi
+                bantuan khusus yaitu
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >var_dump()</code
+                >.
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]">tipe_data.php</span>
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+$status_aktif = true;
+$nilai_ujian = 95.5;
+var_dump($status_aktif); // Hasil: bool(true)
+var_dump($nilai_ujian);  // Hasil: float(95.5)
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 4</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_04.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_4_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 04
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <hr class="border-slate-800/60" />
+
+          <!-- BAB II: OPERATOR & LOGIKA STRUKTUR KONTROL -->
+          <section class="space-y-6">
+            <h2
+              class="text-2xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-3 border-b border-slate-800 pb-2"
+            >
+              <i class="fas fa-random text-emerald-400 text-xl"></i>
+              Bab II: Operator &amp; Logika Percabangan
+            </h2>
+            <p class="!text-left text-slate-300">
+              Pemrosesan logika program membutuhkan validasi kondisi. Anda harus
+              menguasai operator komputasi untuk melakukan manipulasi data serta
+              struktur percabangan untuk mengontrol alur eksekusi aplikasi web.
+            </p>
+
+            <!-- Modul 5 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 05</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >Operators</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Operator Aritmatika, Perbandingan, Logika, &amp; String
+              </h3>
+              <p class="text-sm text-slate-400">
+                Operator digunakan untuk memproses manipulasi nilai variabel.
+                Perbedaan fundamental yang wajib dipelajari adalah operator
+                perbandingan biasa
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >==</code
+                >
+                dengan operator identitas ketat
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >===</code
+                >
+                (membandingkan nilai sekaligus kesesuaian tipe data). Kita juga
+                menggunakan operator titik
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >.</code
+                >
+                untuk menggabungkan dua string atau lebih.
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]">operator.php</span>
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+$a = 10;
+$b = "10";
+var_dump($a == $b);  // bool(true) karena nilainya sama
+var_dump($a === $b); // bool(false) karena tipe data berbeda (int vs string)
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 5</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_05.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_5_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 05
+                </a>
+              </div>
+            </div>
+
+            <!-- Modul 6 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 06</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >Control Flow</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Struktur Kontrol Percabangan (If, Else, Switch, Match)
+              </h3>
+              <p class="text-sm text-slate-400">
+                Struktur percabangan memungkinkan program beradaptasi
+                berdasarkan nilai kondisi tertentu. Kita menggunakan struktur
+                percabangan bertingkat
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >if-elseif-else</code
+                >, percabangan kasus
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >switch-case</code
+                >, serta ekspresi modern
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >match()</code
+                >
+                pada versi PHP 8+ yang mengembalikan nilai secara langsung,
+                ringkas, dan lebih aman dari kesalahan penulisan kata kunci
+                break.
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]">match.php</span>
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+$nilai = "A";
+$hasil = match ($nilai) {
+    "A" => "Sangat Baik",
+    "B" => "Cukup Baik",
+    default => "Belajar Lagi"
+};
+echo $hasil;
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 6</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_06.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_6_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 06
+                </a>
+              </div>
+            </div>
+
+            <!-- Modul 7 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 07</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >Loops</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Struktur Kontrol Perulangan / Looping (For, While, Do-While)
+              </h3>
+              <p class="text-sm text-slate-400">
+                Perulangan digunakan untuk melakukan eksekusi baris kode secara
+                berulang selama parameter kondisi bernilai benar (true). Kita
+                membedakan perulangan terhitung (counted loops) menggunakan
+                instruksi
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >for</code
+                >, serta perulangan berbasis kondisi bersyarat (uncounted
+                loops) menggunakan perintah
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >while</code
+                >
+                dan
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >do-while</code
+                >.
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]">loop.php</span>
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+for ($i = 1; $i <= 3; $i++) {
+    echo "Baris ke-" . $i . "\n";
+}
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 7</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_07.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_7_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 07
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <hr class="border-slate-800/60" />
+
+          <!-- BAB III: MANIPULASI DATA & ARRAY -->
+          <section class="space-y-6">
+            <h2
+              class="text-2xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-3 border-b border-slate-800 pb-2"
+            >
+              <i class="fas fa-boxes text-emerald-400 text-xl"></i>
+              Bab III: Pengelolaan Array &amp; Fungsi Modular
+            </h2>
+            <p class="!text-left text-slate-300">
+              Mengorganisir sekumpulan nilai yang kompleks membutuhkan tipe data
+              kolektif seperti array, serta modularisasi program ke dalam
+              fungsi-fungsi mandiri.
+            </p>
+
+            <!-- Modul 8 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 08</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >Array</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Struktur Array Indeks Numerik &amp; Looping
+              </h3>
+              <p class="text-sm text-slate-400">
+                Array adalah variabel kontainer khusus untuk menampung beberapa
+                nilai sekaligus. Modul ini mempelajari Array Terindeks Numerik
+                yang dihitung mulai dari indeks nol. Kita juga mempelajari
+                fungsionalitas looping array dinamis menggunakan perintah
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >for</code
+                >
+                yang disandingkan dengan fungsi bawaan
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >count()</code
+                >
+                untuk menghitung jumlah total elemen secara dinamis.
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]"
+                    >array_numerik.php</span
+                  >
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+$buah = ["Apel", "Pisang", "Jeruk"];
+for ($i = 0; $i < count($buah); $i++) {
+    echo $buah[$i] . " ";
+}
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 8</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_08.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_8_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 08
+                </a>
+              </div>
+            </div>
+
+            <!-- Modul 9 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 09</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >Associative Array</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Struktur Array Asosiatif &amp; Foreach Loop
+              </h3>
+              <p class="text-sm text-slate-400">
+                Berbeda dengan array biasa, Array Asosiatif menggunakan pasangan
+                kata kunci String penanda (Key-Value) bersimbol
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >=&gt;</code
+                >
+                untuk memetakan penunjuk data. Modul ini mengajarkan pembuatan
+                representasi tabel database ke dalam skema array asosiatif
+                multidimensi, serta teknik pembongkaran elemennya menggunakan
+                perulangan looping instan
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >foreach</code
+                >.
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]"
+                    >array_asosiatif.php</span
+                  >
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+$mhs = [
+    "nama" => "Deri Kusuma",
+    "jurusan" => "Informatika"
+];
+foreach ($mhs as $key => $value) {
+    echo $key . " : " . $value . "\n";
+}
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 9</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_09.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_9_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 09
+                </a>
+              </div>
+            </div>
+
+            <!-- Modul 10 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 10</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >Functions</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Fungsi Modular Mandiri (User-Defined Functions) &amp; Type
+                Hinting
+              </h3>
+              <p class="text-sm text-slate-400">
+                Penerapan pemrograman bersih "Don't Repeat Yourself" (DRY)
+                dilakukan dengan memaketkan baris logika yang sering digunakan
+                ke dalam sub-program modular khusus bernama fungsi. Kita belajar
+                membuat fungsi modular mandiri, mendefinisikan argumen input
+                dengan nilai default cadangan, tipe data keluaran return, serta
+                mode ketat pembatasan tipe data input lewat perintah
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >declare(strict_types=1)</code
+                >.
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]">fungsi.php</span>
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+declare(strict_types=1);
+function tambah(int $x, int $y): int {
+    return $x + $y;
+}
+echo tambah(5, 12);
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 10</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_10.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_10_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 10
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <hr class="border-slate-800/60" />
+
+          <!-- BAB IV: INTERAKSI DATA & BUILT-IN FUNCTIONS -->
+          <section class="space-y-6">
+            <h2
+              class="text-2xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-3 border-b border-slate-800 pb-2"
+            >
+              <i class="fas fa-cubes text-emerald-400 text-xl"></i>
+              Bab IV: Interaksi HTTP &amp; Manipulasi String Lanjut
+            </h2>
+            <p class="!text-left text-slate-300">
+              Menangani transfer data dari masukan formulir browser serta
+              manipulasi data teks merupakan aktivitas yang paling sering
+              dihadapi oleh pengembang aplikasi backend.
+            </p>
+
+            <!-- Modul 11 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 11</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >Superglobals</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Penanganan Form dengan Metode GET &amp; POST
+              </h3>
+              <p class="text-sm text-slate-400">
+                Data input yang dikirimkan oleh pengguna ditangkap di sisi
+                backend menggunakan variabel penampung global berstruktur khusus
+                bernama "Superglobal Variables". Metode pengiriman data secara
+                terbuka di alamat URL ditampung oleh variabel superglobal
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >$_GET</code
+                >, sedangkan metode pengiriman tersembunyi lewat "HTTP Request
+                Body" ditampung oleh variabel
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >$_POST</code
+                >.
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]"
+                    >form_proses.php</span
+                  >
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+// Menangkap data form dengan proteksi nilai bawaan fallback
+$username = $_POST['username'] ?? '';
+echo "Halo, " . htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 11</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_11.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_11_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 11
+                </a>
+              </div>
+            </div>
+
+            <!-- Modul 12 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 12</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >Utilities</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Manipulasi String &amp; Fungsi Built-in Waktu Server
+              </h3>
+              <p class="text-sm text-slate-400">
+                PHP menyediakan beragam fungsi pustaka bawaan esensial untuk
+                memanipulasi string data secara efisien seperti memecah teks
+                menjadi array dengan
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >explode()</code
+                >, menggabungkan data menjadi satu string utuh lewat
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >implode()</code
+                >, atau memodifikasi karakter dengan
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >str_replace()</code
+                >. Modul ini juga mengajarkan penataan waktu server lokal
+                menggunakan fungsi penanggalan
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >date()</code
+                >
+                dan
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >strtotime()</code
+                >.
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]"
+                    >string_time.php</span
+                  >
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+$hobi_csv = "membaca,menulis,berenang";
+$array_hobi = explode(",", $hobi_csv); // Memecah menjadi array
+echo "Jumlah Hobi: " . count($array_hobi);
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 12</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_12.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_12_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 12
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <hr class="border-slate-800/60" />
+
+          <!-- BAB V: INTEGRASI DATABASE SECARA INTEGRAL (PDO & CRUD) -->
+          <section class="space-y-6">
+            <h2
+              class="text-2xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-3 border-b border-slate-800 pb-2"
+            >
+              <i class="fas fa-database text-emerald-400 text-xl"></i>
+              Bab V: Koneksi Database Relasional &amp; Transaksi CRUD
+            </h2>
+            <p>
+              Integrasi database menandai lahirnya aplikasi web dinamis yang
+              sesungguhnya. Lapisan abstraksi modern PDO memampukan kita
+              melakukan eksekusi transaksi tabel secara fleksibel dan aman dari
+              serangan kueri ilegal.
+            </p>
+
+            <!-- Modul 13 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 13</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >PDO</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Koneksi Database dengan PHP Data Objects (PDO)
+              </h3>
+              <p class="text-sm text-slate-400">
+                Menghubungkan aplikasi web ke database relasional dilakukan
+                menggunakan lapisan modern
+                <strong>PDO (PHP Data Objects)</strong> yang lebih aman
+                dibanding pustaka prosedural MySQL klasik. Di modul ini, kita
+                mempelajari pembuatan konstruktor DSN (Data Source Name),
+                manajemen hak akses akun pengguna database, serta pengamanan
+                alur error program lewat penanganan galat blok
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >try-catch</code
+                >.
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]">koneksi.php</span>
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+try {
+    $db = new PDO("mysql:host=localhost;dbname=belajar", "root", "");
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Terjadi kegagalan koneksi: " . $e->getMessage();
+}
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 13</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_13.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_13_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 13
+                </a>
+              </div>
+            </div>
+
+            <!-- Modul 14 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 14</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >CRUD</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Operasi Database (Create, Read, Update, Delete) &amp; Keamanan
+                Kueri
+              </h3>
+              <p class="text-sm text-slate-400">
+                Modul ini mempraktikkan siklus manipulasi database relasional
+                secara terstruktur (CRUD). Fokus utama ditekankan pada
+                pengenalan serangan <strong>SQL Injection</strong> yang
+                mematikan dan bagaimana teknik mengamankan kueri menggunakan
+                metode <strong>Prepared Statements</strong> dan proses
+                pengikatan data (parameter binding) lewat PDO.
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]">crud.php</span>
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+// Menulis kueri aman dengan penampung parameter sementara
+$stmt = $db->prepare("SELECT * FROM mhs WHERE nim = :nim");
+$stmt->execute(['nim' => '2026012']);
+$data_mhs = $stmt->fetch();
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 14</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_14.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_14_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 14
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <hr class="border-slate-800/60" />
+
+          <!-- BAB VI: STATE MANAGEMENT, OOP, & KEAMANAN WEB -->
+          <section class="space-y-6">
+            <h2
+              class="text-2xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-3 border-b border-slate-800 pb-2"
+            >
+              <i class="fas fa-shield-alt text-emerald-400 text-xl"></i>
+              Bab VI: Pengelolaan Status &amp; Pengamanan Lanjut
+            </h2>
+            <p>
+              Pada bagian akhir, Anda akan menguasai cara mengamankan kata sandi
+              pengguna secara profesional, melacak status login pengguna, serta
+              mempublikasikan situs web yang telah dibuat ke internet.
+            </p>
+
+            <!-- Modul 15 -->
+            <div
+              class="glasscard p-6 rounded-2xl border border-emerald-500/15 bg-slate-900/10 space-y-4"
+            >
+              <div
+                class="flex items-center justify-between border-b border-slate-800/60 pb-2"
+              >
+                <span
+                  class="text-xs font-bold text-emerald-400 uppercase tracking-widest"
+                  >MODUL 15</span
+                >
+                <span
+                  class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  >Security</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Autentikasi Session, Pengamanan Sandi (BCrypt) &amp; Deployment
+                Server
+              </h3>
+              <p class="text-sm text-slate-400">
+                Modul puncak ini berfokus pada mekanisme proteksi backend
+                sesungguhnya. Kita menggunakan <strong>Session</strong> (<code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >$_SESSION</code
+                >) untuk memverifikasi hak akses login pengguna. Sandi pengguna
+                dienkripsi secara sepihak dan aman menggunakan algoritma BCrypt
+                lewat fungsi bawaan PHP
+                <code
+                  class="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300 font-mono"
+                  >password_hash()</code
+                >. Modul ini juga menjelaskan langkah-langkah mengunggah berkas
+                website dan database dari lokal komputer menuju web hosting asli
+                (cPanel).
+              </p>
+              <div
+                class="font-mono text-xs rounded-xl border border-emerald-500/10 bg-slate-950/60 overflow-hidden"
+              >
+                <div
+                  class="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between"
+                >
+                  <span class="text-slate-400 text-[10px]">keamanan.php</span>
+                  <span class="text-emerald-400 text-[9px] uppercase font-bold"
+                    >PHP</span
+                  >
+                </div>
+                <pre class="p-4 text-emerald-400 overflow-x-auto"><code>&lt;?php
+$sandi_asli = "rahasia123";
+// Mengenkripsi sandi secara sepihak ke format hash acak
+$sandi_aman = password_hash($sandi_asli, PASSWORD_BCRYPT);
+
+// Memverifikasi kecocokan sandi saat proses login
+$cocok = password_verify("rahasia123", $sandi_aman); // boolean(true)
+?&gt;</code></pre>
+              </div>
+              <div
+                class="p-4 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-lg"
+                  >
+                    <i class="fas fa-file-pdf"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-400 block"
+                      >DOKUMEN MODUL 15</span
+                    >
+                    <span class="text-sm text-slate-200 font-semibold"
+                      >php_dasar_15.pdf</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="../file-pdf/php/modul_15_dasar_php.pdf"
+                  target="_blank"
+                  class="w-full sm:w-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-slate-955 font-extrabold text-xs rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"
+                >
+                  <i class="fas fa-download"></i> Unduh PDF Modul 15
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- HIGHLIGHT QUOTE CARD PREMIUM -->
+          <div
+            class="w-full my-10 p-8 rounded-r-3xl border-l-4 border-emerald-500 bg-emerald-950/20 border border-emerald-500/10 !border-l-emerald-500 !text-left backdrop-blur-md"
+          >
+            <p
+              class="italic text-slate-100 text-lg font-medium leading-relaxed"
+            >
+              "Kemudahan sintaksis PHP seringkali membuat pengembang pemula
+              mengabaikan pentingnya arsitektur keamanan. Dengan mempelajari 15
+              modul dasar ini secara berurutan dan disiplin, Anda tidak sekadar
+              menulis program yang berjalan, namun merancang ekosistem aplikasi
+              web yang andal, aman, dan siap bersaing di level enterprise."
+            </p>
+          </div>
+
+          <!-- KESIMPULAN -->
+          <section class="space-y-4">
+            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+              <i class="fas fa-graduation-cap text-emerald-400"></i>
+              Langkah Selanjutnya: Membangun Portofolio Aplikasi Sisi Server Anda
+            </h3>
+            <p class="text-slate-300 text-justify">
+              Kini Anda telah dibekali penjelasan lengkap dan berurutan dari 15
+              modul pembelajaran Dasar Pemrograman PHP dari Kusuma Web Academy.
+              Integrasikan modul demi modul ini untuk mulai membangun karya web
+              dinamis Anda sendiri—seperti sistem blog sederhana, sistem
+              manajemen inventory, atau sistem login portal anggota terenkripsi.
+              Manfaatkan file dokumentasi PDF yang tersemat pada tiap modul di
+              atas sebagai panduan praktis penulisan kode Anda. Teruslah
+              berkarya dan eksplorasi!
+            </p>
+          </section>
+        </div>
+      </article>
+
+      <!-- FOOTER ARTIKEL SINKRON -->
+      <hr class="border-slate-800/60 my-8" />
+
+      <!-- Tombol Share -->
+      <div class="flex items-center gap-3 text-sm text-slate-400 mb-4">
+        <span>Bagikan panduan fundamental ini:</span>
+        <a href="https://twitter.com/intent/tweet?text=Judul%20Artikel%20Menarik&url=https://kusuma-web.biz.id/pemrograman-dasar/dasar-php.html" target="_blank" class="hover:text-emerald-400 transition-colors">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://kusuma-web.biz.id/pemrograman-dasar/dasar-php.html" target="_blank" class="hover:text-emerald-400 transition-colors">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://api.whatsapp.com/send?text=Yuk%20baca%20artikel%20ini:%20https://kusuma-web.biz.id/pemrograman-dasar/dasar-php.html" target="_blank" class="hover:text-emerald-400 transition-colors">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+
+      <!-- Tag Hashtags -->
+      <div class="flex flex-wrap gap-2 text-xs text-slate-400 mb-12">
+        <span
+          class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800"
+          >#PHPDynamicWeb</span
+        >
+        <span
+          class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800"
+          >#KusumaWebAcademy</span
+        >
+        <span
+          class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800"
+          >#SecureCodingStandard</span
+        >
+        <span
+          class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800"
+          >#DatabasePDOCrud</span
+        >
+        <span
+          class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800"
+          >#PHP8MatchExpression</span
+        >
+      </div>
+
+    <!-- ─── SECTION KOMENTAR ─── -->
+      <section class="w-full max-w-6xl -mt-3 mx-auto px-4 py-8">
+        <div class="glasscard p-5 md:p-6 rounded-2xl border border-emerald-500/20 space-y-6">
+          
+          <!-- Header Komentar -->
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="text-base md:text-lg font-bold text-white flex items-center gap-2 whitespace-nowrap">
+              <i class="fas fa-comments text-emerald-400"></i> Diskusi & Komentar
+            </h3>
+            <!-- Indicator Status Admin -->
+            <span id="adminBadge" class="hidden text-[10px] font-mono text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-2.5 py-1 rounded-lg shrink-0">
+              <i class="fas fa-user-shield mr-1"></i>Admin
+            </span>
+          </div>
+
+          <!-- Form Input Komentar Publik -->
+          <form id="commentForm" class="space-y-3">
+            <input 
+              type="text" 
+              id="commentName" 
+              placeholder="Nama Kamu..." 
+              required
+              class="w-full bg-slate-950/80 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-xs text-slate-200 outline-none focus:border-emerald-500/50 font-mono"
+            />
+            <textarea 
+              id="commentText" 
+              rows="3" 
+              placeholder="Tulis komentar kamu di sini..." 
+              required
+              class="w-full bg-slate-950/80 border border-emerald-500/20 rounded-xl p-4 text-xs text-slate-200 outline-none focus:border-emerald-500/50 font-mono resize-none custom-scroll"
+            ></textarea>
+            <button 
+              type="submit" 
+              class="py-2.5 px-5 rounded-xl text-xs text-white font-extrabold bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-95 transition-all shadow-md flex items-center gap-2"
+            >
+              <i class="fas fa-paper-plane"></i> Kirim Komentar
+            </button>
+          </form>
+
+          <hr class="border-emerald-500/10" />
+
+          <!-- Daftar Komentar Publik -->
+          <div id="commentsContainer" class="space-y-4">
+            <p class="text-xs text-slate-500 font-mono text-center">Memuat komentar...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer Hak Cipta Rata Tengah -->
+      <footer
+        class="text-center text-xs text-slate-500 border-t border-slate-900/40 pt-6"
+      >
+        <p>
+          © 2026 Deri Kusuma. All rights reserved.
+        </p>
+      </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDxK8rFUKYe6kJrK2MUsxY_yylh75fxfN0",
+        authDomain: "kusumaweb-system.firebaseapp.com",
+        projectId: "kusumaweb-system",
+        storageBucket: "kusumaweb-system.firebasestorage.app",
+        messagingSenderId: "254017971517",
+        appId: "1:254017971517:web:3a7c7ccbe3f9d6a76d9154",
+        measurementId: "G-JZMMG59MBE"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const auth = getAuth(app);
+
+      // Normalisasi pathname agar 'index.html' dan '/' dianggap sama
+      let currentPage = window.location.pathname;
+      if (currentPage.endsWith('/') || currentPage === '') {
+        currentPage = '/index.html';
+      }
+
+      let isAdmin = false;
+
+      // 1. Cek Status Admin (Render ulang komentar saat status admin terkonfirmasi)
+      onAuthStateChanged(auth, (user) => {
+        // ⚠️ Pastikan email ini SAMA PERSIS dengan email login admin kamu (huruf kecil/besar berpengaruh)
+        if (user && user.email.toLowerCase() === "kusumaweb0212@gmail.com".toLowerCase()) {
+          isAdmin = true;
+          document.getElementById("adminBadge")?.classList.remove("hidden");
+        } else {
+          isAdmin = false;
+          document.getElementById("adminBadge")?.classList.add("hidden");
+        }
+        // Muat ulang daftar komentar setelah status admin dipastikan
+        loadComments();
+      });
+
+      // 2. Tambah Komentar
+      const commentForm = document.getElementById("commentForm");
+      if (commentForm) {
+        commentForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const name = document.getElementById("commentName").value.trim();
+          const text = document.getElementById("commentText").value.trim();
+
+          if (!name || !text) return;
+
+          await addDoc(collection(db, "comments"), {
+            page: currentPage,
+            name: name,
+            text: text,
+            timestamp: serverTimestamp()
+          });
+
+          commentForm.reset();
+        });
+      }
+
+      // 3. Load & Render Komentar Realtime
+      function loadComments() {
+        const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
+        
+        onSnapshot(q, (snapshot) => {
+          const container = document.getElementById("commentsContainer");
+          if (!container) return;
+          
+          container.innerHTML = "";
+
+          // Filter komentar sesuai halaman saat ini
+          const pageComments = snapshot.docs.filter(docSnap => {
+            let p = docSnap.data().page;
+            if (p && (p.endsWith('/') || p === '')) p = '/index.html';
+            return p === currentPage;
+          });
+
+          if (pageComments.length === 0) {
+            container.innerHTML = `<p class="text-xs text-slate-500 font-mono text-center">Belum ada komentar di halaman ini.</p>`;
+            return;
+          }
+
+          pageComments.forEach((docSnap) => {
+            const data = docSnap.data();
+            const commentId = docSnap.id;
+            
+            let formattedTime = "";
+            if (data.timestamp) {
+              const dateObj = data.timestamp.toDate();
+              formattedTime = dateObj.toLocaleDateString("id-ID", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+              }) + `, ${dateObj.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}`;
+            } else {
+              formattedTime = "Baru saja"; // Untuk tampilan instant sebelum server merespon
+            }
+
+            const card = document.createElement("div");
+            card.className = "inner-dark-box p-3.5 rounded-xl border border-emerald-500/10 flex justify-between items-start gap-3 my-2";
+            
+            const deleteBtnHTML = isAdmin 
+              ? `<button onclick="deleteComment('${commentId}')" class="text-red-400 hover:text-red-300 text-xs p-1 transition-colors" title="Hapus Komentar">
+                  <i class="fas fa-trash"></i>
+                </button>` 
+              : '';
+
+            card.innerHTML = `
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-emerald-400 font-mono">${data.name}</span>
+                  <!-- Badge Tanggal & Jam -->
+                  <span class="text-[9px] text-slate-500 font-mono">${formattedTime}</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">${data.text}</p>
+              </div>
+              ${deleteBtnHTML}
+            `;
+
+            container.appendChild(card);
+          });
+        });
+      }
+
+      // 4. Fungsi Hapus Komentar Global
+      window.deleteComment = async (id) => {
+        if (confirm("Yakin ingin menghapus komentar ini secara permanen?")) {
+          try {
+            await deleteDoc(doc(db, "comments", id));
+          } catch (err) {
+            console.error("Delete error:", err);
+            alert("Gagal menghapus! Akses ditolak oleh server.");
+          }
+        }
+      };
+      
+      const htmlTag = document.documentElement;
+      const toggleBtn = document.getElementById("mode-toggle");
+      const toggleDot = document.getElementById("toggle-dot");
+      const icon = document.getElementById("mode-icon");
+
+      function updateUITheme(theme) {
+        if (theme === "light") {
+          htmlTag.classList.remove("dark");
+          htmlTag.classList.add("light");
+          if (toggleDot)
+            toggleDot.className =
+              "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform duration-300 translate-x-0 flex items-center justify-center";
+          if (icon) icon.className = "text-[10px] text-emerald-600 fas fa-sun";
+        } else {
+          htmlTag.classList.remove("light");
+          htmlTag.classList.add("dark");
+          if (toggleDot)
+            toggleDot.className =
+              "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform duration-300 translate-x-5 flex items-center justify-center";
+          if (icon) icon.className = "text-[10px] text-slate-700 fas fa-moon";
+        }
+      }
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+          const currentTheme = htmlTag.classList.contains("dark") ? "dark" : "light";
+          const newTheme = currentTheme === "dark" ? "light" : "dark";
+          localStorage.setItem("theme", newTheme);
+          updateUITheme(newTheme);
+        });
+      }
+      updateUITheme(localStorage.getItem("theme") || "dark");
+
+      // --- HAMBURGER & DOUBLE DROPDOWN ACCORDION CONTROLLER ---
+      const hamburgerBtn = document.getElementById("hamburger-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const hamburgerIcon = document.getElementById("hamburger-icon");
+
+      const submenuToggleBtn = document.getElementById("submenu-toggle-btn");
+      const articlesSubmenu = document.getElementById("articles-submenu");
+      const submenuArrow = document.getElementById("submenu-arrow");
+
+      const dasarToggleBtn = document.getElementById("dasar-toggle-btn");
+      const dasarSubmenu = document.getElementById("dasar-submenu");
+      const dasarArrow = document.getElementById("dasar-arrow");
+
+      const projectToggleBtn = document.getElementById("project-toggle-btn");
+      const projectSubmenu = document.getElementById("project-submenu");
+      const projectArrow = document.getElementById("project-arrow");
+
+      const aktifitasToggleBtn = document.getElementById("aktifitas-toggle-btn");
+      const aktifitasSubmenu = document.getElementById("aktifitas-submenu");
+      const aktifitasArrow = document.getElementById("aktifitas-arrow");
+
+      const toolsToggleBtn = document.getElementById("tools-toggle-btn");
+      const toolsSubmenu = document.getElementById("tools-submenu");
+      const toolsArrow = document.getElementById("tools-arrow");
+
+      if (hamburgerBtn && mobileMenu && hamburgerIcon) {
+        hamburgerBtn.addEventListener("click", () => {
+          if (mobileMenu.classList.contains("hidden")) {
+            mobileMenu.classList.remove("hidden");
+            hamburgerIcon.className = "fas fa-times";
+          } else {
+            mobileMenu.classList.add("hidden");
+            hamburgerIcon.className = "fas fa-bars";
+            if (articlesSubmenu) articlesSubmenu.classList.add("hidden");
+            if (dasarSubmenu) dasarSubmenu.classList.add("hidden");
+            if (submenuArrow) submenuArrow.style.transform = "rotate(0deg)";
+            if (dasarArrow) dasarArrow.style.transform = "rotate(0deg)";
+          }
+        });
+
+        if (submenuToggleBtn && articlesSubmenu && submenuArrow) {
+          submenuToggleBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (articlesSubmenu.classList.contains("hidden")) {
+              articlesSubmenu.classList.remove("hidden");
+              submenuArrow.style.transform = "rotate(180deg)";
+              if (dasarSubmenu) dasarSubmenu.classList.add("hidden");
+              if (dasarArrow) dasarArrow.style.transform = "rotate(0deg)";
+            } else {
+              articlesSubmenu.classList.add("hidden");
+              submenuArrow.style.transform = "rotate(0deg)";
+            }
+          });
+        }
+
+        if (dasarToggleBtn && dasarSubmenu && dasarArrow) {
+          dasarToggleBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (dasarSubmenu.classList.contains("hidden")) {
+              dasarSubmenu.classList.remove("hidden");
+              dasarArrow.style.transform = "rotate(180deg)";
+              if (articlesSubmenu) articlesSubmenu.classList.add("hidden");
+              if (submenuArrow) submenuArrow.style.transform = "rotate(0deg)";
+            } else {
+              dasarSubmenu.classList.add("hidden");
+              dasarArrow.style.transform = "rotate(0deg)";
+            }
+          });
+        }
+
+        if (projectToggleBtn && projectSubmenu && projectArrow) {
+          projectToggleBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (projectSubmenu.classList.contains("hidden")) {
+              projectSubmenu.classList.remove("hidden");
+              projectArrow.style.transform = "rotate(180deg)";
+              if (articlesSubmenu) articlesSubmenu.classList.add("hidden");
+              if (dasarSubmenu) dasarSubmenu.classList.add("hidden");
+              if (submenuArrow) submenuArrow.style.transform = "rotate(0deg)";
+              if (dasarArrow) dasarArrow.style.transform = "rotate(0deg)";
+            } else {
+              projectSubmenu.classList.add("hidden");
+              projectArrow.style.transform = "rotate(0deg)";
+            }
+          });
+        }
+        
+        if (aktifitasToggleBtn && aktifitasSubmenu && aktifitasArrow) {
+          aktifitasToggleBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (aktifitasSubmenu.classList.contains("hidden")) {
+              aktifitasSubmenu.classList.remove("hidden");
+              aktifitasArrow.style.transform = "rotate(180deg)";
+              if (articlesSubmenu) articlesSubmenu.classList.add("hidden");
+              if (dasarSubmenu) dasarSubmenu.classList.add("hidden");
+              if (projectSubmenu) projectSubmenu.classList.add("hidden");
+              if (toolsSubmenu) toolsSubmenu.classList.add("hidden");
+              if (submenuArrow) submenuArrow.style.transform = "rotate(0deg)";
+              if (dasarArrow) dasarArrow.style.transform = "rotate(0deg)";
+              if (projectArrow) projectArrow.style.transform = "rotate(0deg)";
+              if (toolsArrow) toolsArrow.style.transform = "rotate(0deg)";
+            } else {
+              aktifitasSubmenu.classList.add("hidden");
+              aktifitasArrow.style.transform = "rotate(0deg)";
+            }
+          });
+        }
+
+        if (toolsToggleBtn && toolsSubmenu && toolsArrow) {
+          toolsToggleBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (toolsSubmenu.classList.contains("hidden")) {
+              toolsSubmenu.classList.remove("hidden");
+              toolsArrow.style.transform = "rotate(180deg)";
+              if (articlesSubmenu) articlesSubmenu.classList.add("hidden");
+              if (dasarSubmenu) dasarSubmenu.classList.add("hidden");
+              if (projectSubmenu) projectSubmenu.classList.add("hidden");
+              if (aktifitasSubmenu) aktifitasSubmenu.classList.add("hidden");
+              if (submenuArrow) submenuArrow.style.transform = "rotate(0deg)";
+              if (dasarArrow) dasarArrow.style.transform = "rotate(0deg)";
+              if (projectArrow) projectArrow.style.transform = "rotate(0deg)";
+              if (aktifitasArrow)
+                aktifitasArrow.style.transform = "rotate(0deg)";
+            } else {
+              toolsSubmenu.classList.add("hidden");
+              toolsArrow.style.transform = "rotate(0deg)";
+            }
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
