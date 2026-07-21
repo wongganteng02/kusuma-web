@@ -1,0 +1,1043 @@
+<!doctype html>
+<html lang="id" id="html-tag" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Esai Lengkap: Krisis Logika Mahasiswa di Era Vibe Coding | DeriKusuma
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- SKRIP DETEKSI DINI (Mengecek mode terakhir sebelum halaman digambar) -->
+    <script>
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      if (savedTheme === "light") {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.classList.add("light");
+      }
+    </script>
+
+    <style>
+      body {
+        transition:
+          background-color 0.3s,
+          color 0.3s;
+      }
+      /* --- KUSTOMISASI CSS ARTIKEL MODE TERANG (ALA DEWAWEB) --- */
+      .light body {
+        background-color: #f4f7f5;
+        background-image: none !important; /* Menghapus radial-gradient agar bersih */
+        color: #111827;
+      }
+      /* Mengubah wadah/card utama konten artikel menjadi putih bersih */
+      .light .glasscard {
+        background: #ffffff !important;
+        border-color: #e5e7eb !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      }
+      /* Memastikan judul bab teks esai berwarna gelap tajam */
+      .light h1,
+      .light h2,
+      .light h3,
+      .light h4 {
+        color: #111827 !important;
+      }
+      /* Mengubah warna teks tulisan artikel agar kontras dan nyaman dibaca */
+      .light p,
+      .light li {
+        color: #4b5563 !important;
+      }
+      /* Menyesuaikan area blok kode/perintah (jika ada) */
+      .light pre,
+      .light code:not(.fa-*) {
+        background-color: #f3f4f6 !important;
+        color: #111827 !important;
+        border-color: #d1d5db !important;
+      }
+      /* Mengubah tombol kembali agar berlatar putih dengan teks hijau */
+      .light a[href="../index.html"] {
+        background-color: #ffffff !important;
+        border-color: #d1d5db !important;
+        color: #059669 !important;
+      }
+      .light a[href="../index.html"]:hover {
+        background-color: #f3f4f6 !important;
+      }
+
+      /* FIX WARNA META PENULIS & HASHTAG DI MODE TERANG */
+      .light .text-slate-400,
+      .light .text-slate-400 span {
+        color: #4b5563 !important;
+      }
+      .light .border-slate-800\/60 {
+        border-color: #d1d5db !important;
+      }
+      .light .mb-12 span {
+        background-color: #ffffff !important;
+        color: #059669 !important;
+        border-color: #e5e7eb !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      }
+
+      /* ======================================================= */
+      /* 🆕 FIX TEKS TAHAPAN YANG MATI / PUDAR DI MODE TERANG   */
+      /* ======================================================= */
+      .light article .text-slate-300,
+      .light article .text-slate-400,
+      .light article .text-slate-500,
+      .light article span:not(.font-bold) {
+        color: #4b5563 !important;
+      }
+      /* Memastikan tulisan tebal (Strong) atau sub-judul tahapan di dalam artikel berwarna hitam legam */
+      .light article strong,
+      .light article font {
+        color: #111827 !important;
+      }
+      /* Penyelaras dropdown navbar artikel di mode terang */
+      .light nav {
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        border-color: #e5e7eb !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      }
+      .light nav a, .light nav button {
+        color: #4b5563 !important;
+      }
+      .light #mobile-menu a:not([href="../index.html"]) {
+        color: #4b5563 !important;
+      }
+      .light #mobile-menu a:not([href="../index.html"]):hover {
+        background-color: #f3f4f6 !important;
+        color: #059669 !important;
+      }
+      .light #hamburger-btn {
+        color: #4b5563 !important;
+      }
+      .light .gradient-text {
+        background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      /* 🎯 PENGATURAN TEKS GRADASI (SUDAH DIPERBAIKI) */
+.dark .gradient-text {
+  background: linear-gradient(
+    135deg,
+    #34d399 0%,
+    #ffffff 60%,
+    #059669 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 🎯 PENGATURAN KARTU UTAMA & BORDER KIRI HIJAU JAMINAN MUNCUL */
+.dark .glasscard {
+  background: rgba(9, 17, 28, 0.6) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(52, 211, 153, 0.15) !important;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(52, 211, 153, 0.05) !important;
+}
+    </style>
+  </head>
+  <body
+    class="min-h-screen py-12 px-4 md:px-12 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black selection:bg-emerald-500 selection:text-slate-950"
+  >
+      <!-- Efek Lingkaran Glow Latar Belakang Teknologi -->
+      <div class="absolute top-0 left-0 right-0 h-96 overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[-10%] left-[10%] w-72 h-72 md:w-96 md:h-96 bg-emerald-500/5 rounded-full blur-[120px] dark:block hidden"></div>
+        <div class="absolute top-[20%] right-[10%] w-72 h-72 md:w-96 md:h-96 bg-emerald-600/5 rounded-full blur-[120px] dark:block hidden"></div>
+      </div>
+
+      <!-- ─── NAVBAR ADAPTIF SINKRON INDEX ─── -->
+    <div class="w-full max-w-6xl mx-auto px-4 absolute top-4 left-0 right-0 z-50">
+      <nav class="glasscard backdrop-blur-md bg-slate-950/70 border border-emerald-500/20 rounded-2xl px-5 py-4 transition-all duration-300 w-full">
+        <div class="flex items-center justify-between w-full">
+          <!-- Logo mengarah balik ke beranda utama -->
+          <a href="../index.html" class="inline-flex items-center shrink-0">
+            <img 
+              src="../gambar/logo-header.png" 
+              alt="KusumaWeb Logo" 
+              class="h-8 md:h-16 w-auto object-contain contrast-150 brightness-110 hover:scale-105 transition-transform duration-200"
+            />
+          </a>
+
+          <div class="flex items-center gap-3 md:gap-4">
+            <!-- Tombol Kapsul Mode Toggle Persis Index -->
+            <button
+              id="mode-toggle"
+              class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-300 focus:outline-none dark:bg-emerald-500 bg-slate-300"
+              role="switch"
+              aria-checked="false"
+            >
+              <span
+                id="toggle-dot"
+                class="pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform duration-300 translate-x-0 flex items-center justify-center"
+              >
+                <i id="mode-icon" class="text-[10px] text-slate-700 fas fa-moon"></i>
+              </span>
+            </button>
+
+            <!-- Tombol Garis 3 Hamburger -->
+            <button
+              id="hamburger-btn"
+              class="text-slate-300 hover:text-emerald-400 focus:outline-none text-xl transition-colors cursor-pointer p-1"
+              aria-label="Toggle Menu"
+            >
+              <i id="hamburger-icon" class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- CONTAINER DROPDOWN MENU UTAMA -->
+        <div
+          id="mobile-menu"
+          class="hidden border-t border-emerald-500/20 mt-4 pt-4 space-y-2 text-sm font-semibold text-slate-300 transition-all duration-300"
+        >
+
+          <a href="../index.html#home" class="block py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all">Home</a>
+
+          <!-- MENU: INSTALL VSCODE -->
+          <a href="../install-vscode/artikel-install-vscode.html" class="block py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-blue-400 transition-all flex items-center justify-between group">
+            <span class="flex items-center gap-2">
+              <i class="fas fa-terminal text-blue-500 text-xs"></i>
+              Install VSCode
+            </span>
+            <i class="fas fa-chevron-right text-[10px] text-slate-500 group-hover:text-blue-400 transition-transform group-hover:translate-x-1"></i>
+          </a>
+
+          <div>
+            <button
+              id="aktifitas-toggle-btn"
+              class="w-full flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all text-left font-semibold cursor-pointer text-slate-300 focus:outline-none"
+            >
+              <span>Aktivitas</span>
+              <i
+                id="aktifitas-arrow"
+                class="fas fa-chevron-down text-xs transition-transform duration-300"
+              ></i>
+            </button>
+            <div
+              id="aktifitas-submenu"
+              class="hidden pl-6 mt-1 space-y-1 border-l-2 border-emerald-500/30"
+            >
+              <a
+                href="haflah-diniyah.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                >
+                Haflah Attasyakur Al-Ibrohimi</a
+              >
+              <a
+                href="haflah-akhirussanah.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                >Haflah Akhirussanah Al-Ibrohimi</a
+              >
+              <a
+                href="buthak.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                >Pendakian Gunung Buthak</a
+              >
+            </div>
+          </div>
+
+          <!-- SUB-MENU ARTIKEL -->
+          <div>
+            <button
+              id="submenu-toggle-btn"
+              class="w-full flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all text-left font-semibold cursor-pointer text-slate-300 focus:outline-none"
+            >
+              <span>Artikel</span>
+              <i id="submenu-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+            </button>
+            <div id="articles-submenu" class="hidden pl-6 mt-1 space-y-1 border-l-2 border-emerald-500/30">
+              <a href="../artikel/artikel-ai.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Masa Depan AI</a>
+              <a href="../artikel/artikel-python.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Panduan Python</a>
+              <a href="../artikel/artikel-vibe-coding.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Ancaman Vibe Coding</a>
+              <a href="../artikel/artikel-wifi-serem.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Captive Portal Wi-Fi</a>
+              <a href="../artikel/artikel-sperm-run.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Game Sperm Run</a>
+              <a href="../artikel/artikel-web-statis.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5">Web Static</a>
+            </div>
+          </div>
+
+          <div>
+            <button
+              id="project-toggle-btn"
+              class="w-full flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all text-left font-semibold cursor-pointer text-slate-300 focus:outline-none"
+            >
+              <span>My Project</span>
+              <i
+                id="project-arrow"
+                class="fas fa-chevron-down text-xs transition-transform duration-300"
+              ></i>
+            </button>
+            <div
+              id="project-submenu"
+              class="hidden pl-6 mt-1 space-y-1 border-l-2 border-emerald-500/30"
+            >
+              <a
+                href="../artikel/artikel-wifi-serem.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                ><i class="fas fa-globe mr-2 text-sky-400 w-4 text-center"></i
+                >IoT Wi-Fi Prank</a
+              >
+              <a
+                href="../artikel/artikel-sperm-run.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                ><i
+                  class="fas fa-gamepad mr-2 text-zinc-400 w-4 text-center"
+                ></i
+                >IoT Games</a
+              >
+              <a
+                href="../my-project/project-bell.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                ><i
+                  class="fas fa-bell mr-2 text-emerald-400 w-4 text-center"
+                ></i
+                >IoT Bel Otomatis</a
+              >
+              <a
+                href="../my-project/project-eyes.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                ><i
+                  class="fas fa-eye mr-2 text-emerald-400 w-4 text-center"
+                ></i
+                >IoT Expressive Eyes</a
+              >
+            </div>
+          </div>
+
+          <!-- PEMROGRAMAN DASAR -->
+          <div>
+            <button
+              id="dasar-toggle-btn"
+              class="w-full flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all text-left font-semibold cursor-pointer text-slate-300 focus:outline-none"
+            >
+              <span>Pemrograman Dasar</span>
+              <i id="dasar-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+            </button>
+            <div id="dasar-submenu" class="hidden pl-6 mt-1 space-y-1 border-l-2 border-zinc-700">
+              <a href="../pemrograman-dasar/dasar-html.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fab fa-html5 mr-2 text-orange-500"></i>Dasar HTML & Struktur Web</a>
+              <a href="../pemrograman-dasar/dasar-css.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fab fa-css3-alt mr-2 text-blue-500"></i>Dasar CSS & Styling Estetik</a>
+              <a href="../pemrograman-dasar/dasar-javascript.html" class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"><i class="fab fa-js mr-2 text-yellow-500"></i>Logika Dasar JavaScript</a>
+              <a
+                href="../pemrograman-dasar/dasar-python.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                ><i class="fab fa-python mr-2 text-blue-400 w-4 text-center"></i>Pemrograman Python</a
+              >
+              <a
+                href="../pemrograman-dasar/dasar-java.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                ><i class="fab fa-java mr-2 text-red-400 w-4 text-center"></i>Pemrograman Java</a
+              >
+              <a
+                href="../pemrograman-dasar/dasar-php.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                ><i class="fab fa-php mr-2 text-zinc-400 w-4 text-center"></i>Pemrograman PHP</a
+              >
+              <a
+                href="../pemrograman-dasar/dasar-cpp.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                ><i class="fas fa-code mr-2 text-sky-400 w-4 text-center"></i>Pemrograman C++</a
+              >
+              <a
+                href="../pemrograman-dasar/dasar-kotlin.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                ><i class="fab fa-android mr-2 text-emerald-400 w-4 text-center"></i>Pemrograman Kotlin</a
+              >
+              <a
+                href="../pemrograman-dasar/dasar-sistem-digital.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                ><i class="fas fa-microchip mr-2 text-zinc-400 w-4 text-center"></i>Sistem Digital</a
+              >
+              <a
+                href="../pemrograman-dasar/dasar-matematika-informatika.html"
+                class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                ><i class="fas fa-calculator mr-2 text-cyan-400 w-4 text-center"></i>Matematika Informatika</a
+              >
+            </div>
+          </div>
+
+          <div>
+              <button
+                id="tools-toggle-btn"
+                class="w-full flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all text-left font-semibold cursor-pointer text-slate-300 focus:outline-none"
+              >
+                <span>Tools</span>
+                <i
+                  id="tools-arrow"
+                  class="fas fa-chevron-down text-xs transition-transform duration-300"
+                ></i>
+              </button>
+              <div
+                id="tools-submenu"
+                class="hidden pl-6 mt-1 space-y-1 border-l-2 border-emerald-500/30"
+              >
+                <a
+                  href="../tools/converter-datahex.html"
+                  class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                  ><i class="fas fa-tools mr-2 text-sky-400 w-4 text-center"></i
+                  >Convert DataHex</a
+                >
+                <a
+                  href="../tools/kalkulator-digital.html"
+                  class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                  ><i
+                    class="fas fa-terminal mr-2 text-yellow-400 w-4 text-center"
+                  ></i
+                  >Kalkulator Digital</a
+                >
+                <a
+                  href="../tools/converter-base64.html"
+                  class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                  ><i class="fas fa-tools mr-2 text-red-400 w-4 text-center"></i
+                  >Convert Base64</a
+                >
+                <a
+                  href="../tools/converter-resize.html"
+                  class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                  ><i
+                    class="fas fa-file mr-2 text-green-400 w-4 text-center"
+                  ></i
+                  >Resize File</a
+                >
+                <a
+                  href="../tools/color-generate.html"
+                  class="block py-2 px-3 text-xs text-slate-400 hover:text-emerald-400 transition-all rounded-md hover:bg-emerald-500/5"
+                  ><i
+                    class="fas fa-palette mr-2 text-slate-400 w-4 text-center"
+                  ></i
+                  >Color Generate</a
+                >
+              </div>
+            </div>
+
+            <a
+              href="../chatbot-ai/ai.html"
+              class="block py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all flex items-center gap-2 font-semibold text-slate-300"
+            >
+              <i class="fas fa-robot text-emerald-400 w-4 text-center"></i>
+              Chatbot AI
+            </a>
+
+          <a href="../index.html#about" class="block py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all">Tentang Saya</a>
+          <a href="https://wa.me/6182332959952" class="block py-2.5 px-3 rounded-lg hover:bg-emerald-500/10 hover:text-emerald-400 transition-all">Kontak</a>
+        </div>
+      </nav>
+    </div>
+
+      <!-- Isi Artikel -->
+      <article class="pt-16 w-full overflow-hidden">
+        <div class="flex flex-wrap gap-2.5">
+          <h1
+          class="text-3xl md:text-6xl font-extrabold text-white leading-tight mt-2 bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-500 "
+        >
+          Review Pendakian Gunung Buthak via Panderman
+        </h1>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-center gap-3 sm:gap-4 text-xs md:text-sm text-slate-400 mt-4">
+  
+          <!-- Info Penulis -->
+          <span class="flex items-center gap-1.5">
+            <i class="far fa-user text-emerald-400"></i> Penulis: Tim Kusuma Web Dev
+          </span>
+          
+          <!-- Titik Pembatas -->
+          <span class="hidden sm:inline text-slate-600">•</span>
+          
+          <!-- Info Tanggal -->
+          <span class="flex items-center gap-1.5">
+            <i class="far fa-calendar-alt text-emerald-400"></i> Diterbitkan: 29 Juni 2026
+          </span>
+          
+          <!-- Titik Pembatas -->
+          <span class="hidden sm:inline text-slate-600">•</span>
+          
+          <!-- Info Durasi -->
+          <span class="flex items-center gap-1.5">
+            <i class="far fa-clock text-emerald-400"></i> Waktu: 11:38 AM
+          </span>
+          
+          <!-- Titik Pembatas -->
+          <span class="hidden sm:inline text-slate-600">•</span>
+          <br>
+
+        </div>
+
+        <!-- BANNER UTAMA -->
+        <section class="w-full max-w-6xl mx-auto px-1 md:px-1 pt-1 pb-1">
+          <div class="auto-slider-container relative w-full h-100 md:h-[450px] overflow-hidden rounded-2xl border border-slate-800 shadow-2xl bg-slate-900 group">
+            
+            <div class="slider-wrapper flex h-full transition-transform duration-1000 ease-in-out" style="transform: translateX(0%);">
+              <div class="w-full h-full shrink-0 relative"><img src="https://k.top4top.io/p_3832y0bcd1.jpeg?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover"></div>
+              <div class="w-full h-full shrink-0 relative"><img src="https://i.top4top.io/p_3832csnvx1.jpeg" class="w-full h-full object-cover"></div>
+              <div class="w-full h-full shrink-0 relative"><img src="https://i.top4top.io/p_383234k5d1.jpeg" class="w-full h-full object-cover"></div>
+            </div>
+
+            <div class="slider-dots-container absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+              <!-- Otomatis diisi bulatan oleh JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- MATERI INTI -->
+        <div
+          class="text-slate-300 leading-relaxed text-base md:text-lg space-y-10 pt-4 text-justify"
+        >
+          <p class="text-left text-slate-300">
+            <strong>Batu -</strong>
+            Gunung Buthak via Panderman yang berlokasi di Desa Pesanggrahan, kecamatan Batu, 
+            kota Batu, Jawa Timur punya pemandangan eksotis dan jalurnya yang sedikit kurang ramah 
+            untuk pendaki pemula. Dengan Ketinggian 2.868 mdpl, Kamis (25/6/2026).
+            <br> <br>
+            Estimasi waktu dari pengalaman saya sendiri ketika camp, mungkin sekitar 11 
+            Jam tanpa ojek sama sekali 😭 kalaupun seandainya kalian ojek itu hanya sampai Pos 2 dan 
+            tarif setiap Posnya kalo nggak salah 60 ribu. <br> <br>
+              <img
+                src="https://a.top4top.io/p_3832ap0e71.jpeg?q=80&w=1200&auto=format&fit=crop"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                alt="padim"
+              />
+            <p class="text-left text-slate-300">
+            (BC - Pos 1). Pendakian dimulai dengan trek yang sangat panjang dan berbatu, melewati ilalang 
+            rumput gajah dengan jalan yang sedikit naik turun, sehingga memakan waktu kurang lebih 
+            1 jam setengah.
+            <br> <br>
+            <img
+                src="https://f.top4top.io/p_3832b1cj71.jpeg?q=80&w=1200&auto=format&fit=crop"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 px-12"
+                alt="padim"
+              />
+            <br>
+            (Pos 1-Pos 2). Di Pos 1 fasilitasnya cukup memadahi, terdapat sumber air, musholla, toilet dan warung (kalo buka?).
+            Dari Pos 1 menuju Pos 2 ada dua jalur, jalur ojek yang tidak terlalu nanjak tapi memutar agak 
+            panjang dan jalur pendaki yang mengharuskan melewati Tanjakan PHP 1 dan Tanjakan PHP 2 yang mungkin 
+            sangat menguras tenaga tapi lebih menghemat waktu. Kalo saya sendiri lewat jalur ojek 
+            dengan estimasi 2 Jam?.
+            <br><br>
+            <img
+                src="https://k.top4top.io/p_383216g3o1.jpeg?q=80&w=1200&auto=format&fit=crop"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 px-12"
+                alt="padim"
+              />
+            <br>
+            (Pos 2 - Pos 3). Di Pos 2 juga ada sumber air, toilet dan warung. Tapi kayake
+            warung e sering tutup deh. Dari Pos 2 ke Pos 3 jalurnya lumayan landai tapi lumayan 
+            panjang mungkin sedikit lebih panjang dari bc ke pos1. <br>Nanti melewati Hutan Lumut yang sebagian 
+            besar vegetasinya tertutup rapat sehingga suasananya sejuk dan rindang <br>(kawasan rawan keturon?). 
+            Estimasi saya tetap sama kurang lebih 2 Jam?. <br><br>
+            <img
+                src="https://i.top4top.io/p_3832alu9v1.jpeg?q=80&w=1200&auto=format&fit=crop"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 px-12"
+                alt="padim"
+              />
+            </p>
+            
+          <!-- 🎯 KOTAK BACA JUGA - SIMETRIS & DIKUNCI PERMANEN -->
+          <div class="w-full my-10 p-4 rounded-r-2xl border-l-4 border-emerald-500 bg-emerald-950/20 border border-emerald-500/10 !border-l-emerald-500 backdrop-blur-md">
+            <a href="../artikel/artikel-ai.html">
+              <p class="italic text-slate-200 text-left font-medium leading-relaxed hover:text-emerald-400 transition-colors">
+                Baca juga: Masa Depan AI di Dunia Perkuliahan: Ancaman atau Peluang?
+              </p>
+            </a>
+          </div>
+          <p class="text-left text-slate-300">
+            (Pos 3 - Pos 4). Di Pos 3 dengan fasilitas yang sama seperti pos-pos sebelumnya, yang lebih khas 
+            dari Pos 3 itu Gorengan Warungnya yang menggoda? meski seharga 2.500 tapi soal rasa aku 
+            yakin nggak ada yang bisa mengungkapkan dengan kata-kata?. <br>Lanjut jalur dari pos 3 ke pos 4 
+            sangat jauh, naik turunnya curam banget + Jalan Berpasir (kalo kemarau), sehingga aku sendiri 
+            sampai ke pos 4 itu membutuhkan kurang lebih 3 Jam karna banyak breaknya.
+            <br><br>
+            (Pos 4 - Sabana/Pos 5). Pos 4 hanya berupa sedikit dataran yang disamping tanjakan, tidak 
+            terdapat fasilitas apapun. Untuk jalurnya lumayan menanjak, berpasir dan melewati tebing.
+            Kebetulan aku kemarin pas di tanjakan sebelum tebing dapat sunset + pemandangan gunung 
+            bokong, disitu aku reflek batin "seandainya saja dia ada disini ? pasti aku dorong dia 
+            ke jurang", Terus pas di tebing juga kebetulan pas jam 05.30 Sore dapat sunset lautan awan + view semeru. 
+            Estimasi yang dibutuhkan kurang lebih 2 Jam setengah karna aku terlalu larut 
+            dalam menikmati setiap langkah dengan pandangan ke satu titik pusar awan yang membuat aku 
+            merasa tenang tanpa ada yang berisik entah itu dipikiranku atau dihatiku?.
+            <div class="w-full max-w-3xl mx-auto my-6 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-xl">
+              <video class="w-full h-auto aspect-[16/9] object-cover" controls preload="metadata">
+                <source src="../video/tebing.mp4" type="video/mp4">
+                Browser kamu tidak mendukung pemutaran video HTML5.
+              </video>
+            </div>
+            <div class="w-full max-w-3xl mx-auto my-6 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-xl">
+              <video class="w-full h-auto aspect-[16/9] object-cover" controls preload="metadata">
+                <source src="../video/tebing1.mp4" type="video/mp4">
+                Browser kamu tidak mendukung pemutaran video HTML5.
+              </video>
+            </div>
+            <p class="text-left text-slate-300">
+              (Sabana - Puncak). Setelah sampai di sabana aku mendirikan tenda, masak dan makan sampai jam 9 
+              malam dan sebelum tidur aku mencoba set alarm jam 4 pagi buat summit ke puncak biar dapat sunrise.
+              Akhinya summit jam 5? tapi meski nggak dapat sunrise, pas dipuncak alhamdulillahnya cuaca 
+              cerah jadi dapat view lautan awan + view gunung arjuno welirang beserta kembar-kembarnya. Trek 
+              dari sabana ke puncak full nanjak dan sangat berpasir daripada trek sebelumnya, Sehingga estimasi 
+              yang dibutukan 1 setengah jam an (kalo sedikit kejar waktu).
+            </p>
+          </p>
+          
+        <!-- REKOMENDASI ARTIKEL 2 (TEMA HIJAU 3D) -->
+        <div class="w-full my-10 p-4 rounded-r-2xl border-l-4 border-emerald-500 bg-emerald-950/20 border border-emerald-500/10 !border-l-emerald-500 backdrop-blur-md">
+          <a href="../artikel/artikel-wifi-serem.html">
+            <p
+            class="italic text-slate-100 text-left font-medium leading-relaxed dark:text-slate-100"
+            >
+            Baca juga: Spesifikasi Teknis & Panduan Runtut Pembuatan Captive Portal "Wi-Fi Horor" Berbasis ESP8266
+          </p>
+        </a>
+      </div>
+      <div class="w-full max-w-3xl mx-auto my-6 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-xl">
+        <video class="w-full h-auto aspect-[16/9] object-cover" controls preload="metadata">
+          <source src="../video/puncak.mp4" type="video/mp4">
+          Browser kamu tidak mendukung pemutaran video HTML5.
+        </video>
+      </div>
+      <div class="w-full max-w-3xl mx-auto my-6 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-xl">
+        <video class="w-full h-auto aspect-[16/9] object-cover" controls preload="metadata">
+          <source src="../video/puncak1.mp4" type="video/mp4">
+          Browser kamu tidak mendukung pemutaran video HTML5.
+        </video>
+      </div>
+      <p class="text-left text-slate-300">
+            Makasih banyak yah udah mau mengunjungi website kecil saya ini ?? dan saya sangat berterima kasih 
+            karna sudah meluangkan waktu kalian untuk membaca cerita artikel yang tidak penting ini ?.
+          </p>
+        </div>
+      </article>
+
+      <!-- === BAGIAN BAWAH FIX === -->
+      <hr class="border-slate-800/60 my-8" />
+
+      <!-- Tombol Bagikan Sosmed -->
+      <div class="flex items-center gap-3 text-sm text-slate-400 mb-4">
+        <span>Bagikan esai manifesto ini:</span>
+        <a href="https://twitter.com/intent/tweet?text=Judul%20Artikel%20Menarik&url=https://kusuma-web.biz.id/aktivitas/buthak.html" target="_blank" class="hover:text-emerald-400 transition-colors">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://kusuma-web.biz.id/aktivitas/buthak.html" target="_blank" class="hover:text-emerald-400 transition-colors">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://api.whatsapp.com/send?text=Yuk%20baca%20artikel%20ini:%20https://kusuma-web.biz.id/aktivitas/buthak.html" target="_blank" class="hover:text-emerald-400 transition-colors">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+
+      <!-- Rentetan Hashtag -->
+      <div class="flex flex-wrap gap-2 text-xs text-slate-400 mb-12">
+        <span class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800">#olahraga</span>
+        <span class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800">#pendaki</span>
+        <span class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800">#2.868mdpl</span>
+        <span class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800">#alam</span>
+        <span class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800">#camping</span>
+        <span class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800">#sabana</span>
+        <span class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800">#senja</span>
+        <span class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800">#lautan-awan</span>
+      </div>
+
+      <!-- ─── SECTION KOMENTAR ─── -->
+      <section class="w-full max-w-6xl -mt-3 mx-auto px-4 py-8">
+        <div class="glasscard p-5 md:p-6 rounded-2xl border border-emerald-500/20 space-y-6">
+          
+          <!-- Header Komentar -->
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="text-base md:text-lg font-bold text-white flex items-center gap-2 whitespace-nowrap">
+              <i class="fas fa-comments text-emerald-400"></i> Diskusi & Komentar
+            </h3>
+            <!-- Indicator Status Admin -->
+            <span id="adminBadge" class="hidden text-[10px] font-mono text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-2.5 py-1 rounded-lg shrink-0">
+              <i class="fas fa-user-shield mr-1"></i>Admin
+            </span>
+          </div>
+
+          <!-- Form Input Komentar Publik -->
+          <form id="commentForm" class="space-y-3">
+            <input 
+              type="text" 
+              id="commentName" 
+              placeholder="Nama Kamu..." 
+              required
+              class="w-full bg-slate-950/80 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-xs text-slate-200 outline-none focus:border-emerald-500/50 font-mono"
+            />
+            <textarea 
+              id="commentText" 
+              rows="3" 
+              placeholder="Tulis komentar kamu di sini..." 
+              required
+              class="w-full bg-slate-950/80 border border-emerald-500/20 rounded-xl p-4 text-xs text-slate-200 outline-none focus:border-emerald-500/50 font-mono resize-none custom-scroll"
+            ></textarea>
+            <button 
+              type="submit" 
+              class="py-2.5 px-5 rounded-xl text-xs text-white font-extrabold bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-95 transition-all shadow-md flex items-center gap-2"
+            >
+              <i class="fas fa-paper-plane"></i> Kirim Komentar
+            </button>
+          </form>
+
+          <hr class="border-emerald-500/10" />
+
+          <!-- Daftar Komentar Publik -->
+          <div id="commentsContainer" class="space-y-4">
+            <p class="text-xs text-slate-500 font-mono text-center">Memuat komentar...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer Hak Cipta Rata Tengah -->
+      <footer
+        class="text-center text-xs text-slate-500 border-t border-slate-900/40 pt-6"
+      >
+        <p>
+          © 2026 Deri Kusuma. All rights reserved.
+        </p>
+      </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDxK8rFUKYe6kJrK2MUsxY_yylh75fxfN0",
+        authDomain: "kusumaweb-system.firebaseapp.com",
+        projectId: "kusumaweb-system",
+        storageBucket: "kusumaweb-system.firebasestorage.app",
+        messagingSenderId: "254017971517",
+        appId: "1:254017971517:web:3a7c7ccbe3f9d6a76d9154",
+        measurementId: "G-JZMMG59MBE"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const auth = getAuth(app);
+
+      // Normalisasi pathname agar 'index.html' dan '/' dianggap sama
+      let currentPage = window.location.pathname;
+      if (currentPage.endsWith('/') || currentPage === '') {
+        currentPage = '/index.html';
+      }
+
+      let isAdmin = false;
+
+      // 1. Cek Status Admin (Render ulang komentar saat status admin terkonfirmasi)
+      onAuthStateChanged(auth, (user) => {
+        // ⚠️ Pastikan email ini SAMA PERSIS dengan email login admin kamu (huruf kecil/besar berpengaruh)
+        if (user && user.email.toLowerCase() === "kusumaweb0212@gmail.com".toLowerCase()) {
+          isAdmin = true;
+          document.getElementById("adminBadge")?.classList.remove("hidden");
+        } else {
+          isAdmin = false;
+          document.getElementById("adminBadge")?.classList.add("hidden");
+        }
+        // Muat ulang daftar komentar setelah status admin dipastikan
+        loadComments();
+      });
+
+      // 2. Tambah Komentar
+      const commentForm = document.getElementById("commentForm");
+      if (commentForm) {
+        commentForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const name = document.getElementById("commentName").value.trim();
+          const text = document.getElementById("commentText").value.trim();
+
+          if (!name || !text) return;
+
+          await addDoc(collection(db, "comments"), {
+            page: currentPage,
+            name: name,
+            text: text,
+            timestamp: serverTimestamp()
+          });
+
+          commentForm.reset();
+        });
+      }
+
+      // 3. Load & Render Komentar Realtime
+      function loadComments() {
+        const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
+        
+        onSnapshot(q, (snapshot) => {
+          const container = document.getElementById("commentsContainer");
+          if (!container) return;
+          
+          container.innerHTML = "";
+
+          // Filter komentar sesuai halaman saat ini
+          const pageComments = snapshot.docs.filter(docSnap => {
+            let p = docSnap.data().page;
+            if (p && (p.endsWith('/') || p === '')) p = '/index.html';
+            return p === currentPage;
+          });
+
+          if (pageComments.length === 0) {
+            container.innerHTML = `<p class="text-xs text-slate-500 font-mono text-center">Belum ada komentar di halaman ini.</p>`;
+            return;
+          }
+
+          pageComments.forEach((docSnap) => {
+            const data = docSnap.data();
+            const commentId = docSnap.id;
+            
+            let formattedTime = "";
+            if (data.timestamp) {
+              const dateObj = data.timestamp.toDate();
+              formattedTime = dateObj.toLocaleDateString("id-ID", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+              }) + `, ${dateObj.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}`;
+            } else {
+              formattedTime = "Baru saja"; // Untuk tampilan instant sebelum server merespon
+            }
+
+            const card = document.createElement("div");
+            card.className = "inner-dark-box p-3.5 rounded-xl border border-emerald-500/10 flex justify-between items-start gap-3 my-2";
+            
+            const deleteBtnHTML = isAdmin 
+              ? `<button onclick="deleteComment('${commentId}')" class="text-red-400 hover:text-red-300 text-xs p-1 transition-colors" title="Hapus Komentar">
+                  <i class="fas fa-trash"></i>
+                </button>` 
+              : '';
+
+            card.innerHTML = `
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-emerald-400 font-mono">${data.name}</span>
+                  <!-- Badge Tanggal & Jam -->
+                  <span class="text-[9px] text-slate-500 font-mono">${formattedTime}</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">${data.text}</p>
+              </div>
+              ${deleteBtnHTML}
+            `;
+
+            container.appendChild(card);
+          });
+        });
+      }
+
+      // 4. Fungsi Hapus Komentar Global
+      window.deleteComment = async (id) => {
+        if (confirm("Yakin ingin menghapus komentar ini secara permanen?")) {
+          try {
+            await deleteDoc(doc(db, "comments", id));
+          } catch (err) {
+            console.error("Delete error:", err);
+            alert("Gagal menghapus! Akses ditolak oleh server.");
+          }
+        }
+      };
+
+      const htmlTag = document.documentElement;
+      const toggleBtn = document.getElementById("mode-toggle");
+      const toggleDot = document.getElementById("toggle-dot");
+      const icon = document.getElementById("mode-icon");
+
+      const allSliders = document.querySelectorAll('.auto-slider-container');
+
+    allSliders.forEach((container) => {
+      const wrapper = container.querySelector('.slider-wrapper');
+      const dotsContainer = container.querySelector('.slider-dots-container');
+      const slides = wrapper.children;
+      const totalSlides = slides.length;
+      let currentSlide = 0;
+
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-white/40 transition-all duration-300';
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      }
+      const dots = dotsContainer.children;
+
+      function goToSlide(index) {
+        currentSlide = index;
+        wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        Array.from(dots).forEach((dot, i) => {
+          if (i === currentSlide) {
+            dot.classList.remove('bg-white/40');
+            dot.classList.add('bg-emerald-500', 'w-6');
+          } else {
+            dot.classList.remove('bg-emerald-500', 'w-6');
+            dot.classList.add('bg-white/40');
+          }
+        });
+      }
+
+      function nextSlide() {
+        let next = (currentSlide + 1) % totalSlides;
+        goToSlide(next);
+      }
+
+      let interval = setInterval(nextSlide, 4000);
+
+      container.addEventListener('mouseenter', () => clearInterval(interval));
+      container.addEventListener('mouseleave', () => interval = setInterval(nextSlide, 4000));
+
+      goToSlide(0);
+    });
+
+      // 1. ENGINE SAKELAR KAPSUL TEMA UTAMA
+      function updateUITheme(theme) {
+        if (theme === "light") {
+          htmlTag.classList.remove("dark");
+          htmlTag.classList.add("light");
+          if (toggleDot) toggleDot.className = "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform duration-300 translate-x-0 flex items-center justify-center";
+          if (icon) icon.className = "text-[10px] text-emerald-600 fas fa-sun";
+        } else {
+          htmlTag.classList.remove("light");
+          htmlTag.classList.add("dark");
+          if (toggleDot) toggleDot.className = "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform duration-300 translate-x-5 flex items-center justify-center";
+          if (icon) icon.className = "text-[10px] text-slate-700 fas fa-moon";
+        }
+      }
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+          const currentTheme = htmlTag.classList.contains("dark") ? "dark" : "light";
+          const newTheme = currentTheme === "dark" ? "light" : "dark";
+          localStorage.setItem("theme", newTheme);
+          updateUITheme(newTheme);
+        });
+      }
+      updateUITheme(localStorage.getItem("theme") || "dark");
+
+      // 2. HAMBURGER & DROPDOWN ACCORDION CONTROLLER
+      const hamburgerBtn = document.getElementById("hamburger-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const hamburgerIcon = document.getElementById("hamburger-icon");
+
+      const submenuToggleBtn = document.getElementById("submenu-toggle-btn");
+      const articlesSubmenu = document.getElementById("articles-submenu");
+      const submenuArrow = document.getElementById("submenu-arrow");
+
+      const dasarToggleBtn = document.getElementById("dasar-toggle-btn");
+      const dasarSubmenu = document.getElementById("dasar-submenu");
+      const dasarArrow = document.getElementById("dasar-arrow");
+
+      const projectToggleBtn = document.getElementById("project-toggle-btn");
+      const projectSubmenu = document.getElementById("project-submenu");
+      const projectArrow = document.getElementById("project-arrow");
+
+      const aktifitasToggleBtn = document.getElementById("aktifitas-toggle-btn");
+      const aktifitasSubmenu = document.getElementById("aktifitas-submenu");
+      const aktifitasArrow = document.getElementById("aktifitas-arrow");
+
+      const toolsToggleBtn = document.getElementById("tools-toggle-btn");
+      const toolsSubmenu = document.getElementById("tools-submenu");
+      const toolsArrow = document.getElementById("tools-arrow");
+
+      if (hamburgerBtn && mobileMenu && hamburgerIcon) {
+        hamburgerBtn.addEventListener("click", () => {
+          if (mobileMenu.classList.contains("hidden")) {
+            mobileMenu.classList.remove("hidden");
+            hamburgerIcon.className = "fas fa-times";
+          } else {
+            mobileMenu.classList.add("hidden");
+            hamburgerIcon.className = "fas fa-bars";
+            if (articlesSubmenu) articlesSubmenu.classList.add("hidden");
+            if (dasarSubmenu) dasarSubmenu.classList.add("hidden");
+            if (submenuArrow) submenuArrow.style.transform = "rotate(0deg)";
+            if (dasarArrow) dasarArrow.style.transform = "rotate(0deg)";
+          }
+        });
+
+        if (submenuToggleBtn && articlesSubmenu && submenuArrow) {
+          submenuToggleBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (articlesSubmenu.classList.contains("hidden")) {
+              articlesSubmenu.classList.remove("hidden");
+              submenuArrow.style.transform = "rotate(180deg)";
+              if (dasarSubmenu) dasarSubmenu.classList.add("hidden");
+              if (dasarArrow) dasarArrow.style.transform = "rotate(0deg)";
+            } else {
+              articlesSubmenu.classList.add("hidden");
+              submenuArrow.style.transform = "rotate(0deg)";
+            }
+          });
+        }
+
+        if (dasarToggleBtn && dasarSubmenu && dasarArrow) {
+          dasarToggleBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (dasarSubmenu.classList.contains("hidden")) {
+              dasarSubmenu.classList.remove("hidden");
+              dasarArrow.style.transform = "rotate(180deg)";
+              if (articlesSubmenu) articlesSubmenu.classList.add("hidden");
+              if (submenuArrow) submenuArrow.style.transform = "rotate(0deg)";
+            } else {
+              dasarSubmenu.classList.add("hidden");
+              dasarArrow.style.transform = "rotate(0deg)";
+            }
+          });
+        }
+
+        if (projectToggleBtn && projectSubmenu && projectArrow) {
+          projectToggleBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (projectSubmenu.classList.contains("hidden")) {
+              projectSubmenu.classList.remove("hidden");
+              projectArrow.style.transform = "rotate(180deg)";
+              if (articlesSubmenu) articlesSubmenu.classList.add("hidden");
+              if (dasarSubmenu) dasarSubmenu.classList.add("hidden");
+              if (submenuArrow) submenuArrow.style.transform = "rotate(0deg)";
+              if (dasarArrow) dasarArrow.style.transform = "rotate(0deg)";
+            } else {
+              projectSubmenu.classList.add("hidden");
+              projectArrow.style.transform = "rotate(0deg)";
+            }
+          });
+        }
+        
+        if (aktifitasToggleBtn && aktifitasSubmenu && aktifitasArrow) {
+          aktifitasToggleBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (aktifitasSubmenu.classList.contains("hidden")) {
+              aktifitasSubmenu.classList.remove("hidden");
+              aktifitasArrow.style.transform = "rotate(180deg)";
+              if (articlesSubmenu) articlesSubmenu.classList.add("hidden");
+              if (dasarSubmenu) dasarSubmenu.classList.add("hidden");
+              if (projectSubmenu) projectSubmenu.classList.add("hidden");
+              if (toolsSubmenu) toolsSubmenu.classList.add("hidden");
+              if (submenuArrow) submenuArrow.style.transform = "rotate(0deg)";
+              if (dasarArrow) dasarArrow.style.transform = "rotate(0deg)";
+              if (projectArrow) projectArrow.style.transform = "rotate(0deg)";
+              if (toolsArrow) toolsArrow.style.transform = "rotate(0deg)";
+            } else {
+              aktifitasSubmenu.classList.add("hidden");
+              aktifitasArrow.style.transform = "rotate(0deg)";
+            }
+          });
+        }
+
+        if (toolsToggleBtn && toolsSubmenu && toolsArrow) {
+          toolsToggleBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (toolsSubmenu.classList.contains("hidden")) {
+              toolsSubmenu.classList.remove("hidden");
+              toolsArrow.style.transform = "rotate(180deg)";
+              if (articlesSubmenu) articlesSubmenu.classList.add("hidden");
+              if (dasarSubmenu) dasarSubmenu.classList.add("hidden");
+              if (projectSubmenu) projectSubmenu.classList.add("hidden");
+              if (aktifitasSubmenu) aktifitasSubmenu.classList.add("hidden");
+              if (submenuArrow) submenuArrow.style.transform = "rotate(0deg)";
+              if (dasarArrow) dasarArrow.style.transform = "rotate(0deg)";
+              if (projectArrow) projectArrow.style.transform = "rotate(0deg)";
+              if (aktifitasArrow) aktifitasArrow.style.transform = "rotate(0deg)";
+            } else {
+              toolsSubmenu.classList.add("hidden");
+              toolsArrow.style.transform = "rotate(0deg)";
+            }
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
