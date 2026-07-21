@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-white flex items-center justify-center min-h-screen p-6">
+
+  <!-- 💡 CONTAINER DIPERBESAR: Dari max-w-sm (384px) ke max-w-lg (512px) & Padding p-8 -->
+  <div class="p-8 bg-slate-900/90 backdrop-blur-md rounded-2xl border border-emerald-500/20 w-full max-w-lg space-y-6 shadow-2xl">
+    
+    <!-- Judul Diperbesar (text-lg) -->
+    <h2 class="text-lg font-bold text-emerald-400 font-mono text-center tracking-wider">
+      ADMIN LOGIN
+    </h2>
+    
+    <div class="space-y-4">
+      <!-- Field Email -->
+      <div>
+        <label class="text-xs text-slate-400 font-mono block mb-1.5 font-semibold">Email Admin</label>
+        <!-- Input Diperbesar: p-3 text-sm -->
+        <input type="email" id="email" placeholder="admin@domain.com" class="w-full p-3 bg-slate-950 border border-slate-700/80 rounded-xl text-sm text-slate-200 outline-none focus:border-emerald-500 transition-colors" />
+      </div>
+
+      <!-- Field Password -->
+      <div>
+        <label class="text-xs text-slate-400 font-mono block mb-1.5 font-semibold">Password</label>
+        <!-- Input Diperbesar: p-3 text-sm -->
+        <input type="password" id="password" placeholder="••••••••" class="w-full p-3 bg-slate-950 border border-slate-700/80 rounded-xl text-sm text-slate-200 outline-none focus:border-emerald-500 transition-colors" />
+      </div>
+    </div>
+
+    <!-- Tombol Login Diperbesar: py-3.5 text-sm -->
+    <button id="btnLogin" type="button" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-lg shadow-emerald-600/20 active:scale-[0.99]">
+      Login Admin
+    </button>
+
+    <button id="btnLogout" type="button" class="w-full py-3.5 bg-red-600/80 hover:bg-red-500 text-white font-bold text-sm rounded-xl transition-all hidden active:scale-[0.99]">
+      Logout
+    </button>
+
+    <!-- Status Pesan Error/Sukses -->
+    <p id="status" class="text-xs font-mono text-center text-slate-400 min-h-[18px] break-words"></p>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // Isi firebaseConfig yang sama
+    const firebaseConfig = {
+      apiKey: "AIzaSyDxK8rFUKYe6kJrK2MUsxY_yylh75fxfN0",
+      authDomain: "kusumaweb-system.firebaseapp.com",
+      projectId: "kusumaweb-system",
+      storageBucket: "kusumaweb-system.firebasestorage.app",
+      messagingSenderId: "254017971517",
+      appId: "1:254017971517:web:3a7c7ccbe3f9d6a76d9154",
+      measurementId: "G-JZMMG59MBE"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const btnLogin = document.getElementById("btnLogin");
+    const btnLogout = document.getElementById("btnLogout");
+    const status = document.getElementById("status");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        status.innerText = `Logged in as: ${user.email}`;
+        btnLogin.classList.add("hidden");
+        btnLogout.classList.remove("hidden");
+      } else {
+        status.innerText = "Not Logged in";
+        btnLogin.classList.remove("hidden");
+        btnLogout.classList.add("hidden");
+      }
+    });
+
+    btnLogin.addEventListener("click", async () => {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Login Sukses! Mengalihkan ke halaman utama...");
+        
+        // 🚀 Pindah otomatis ke halaman utama atau daftar artikel
+        window.location.href = "../index.html"; 
+      } catch (err) {
+        alert("Login Gagal: " + err.message);
+      }
+    });
+
+    btnLogout.addEventListener("click", () => signOut(auth));
+  </script>
+</body>
+</html>
