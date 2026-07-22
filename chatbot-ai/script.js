@@ -100,7 +100,7 @@ function sendMessage() {
     const userWrapper = document.createElement('div');
     userWrapper.className = 'flex justify-end w-full animate-fade-in';
     
-    let userContent = `<div class="max-w-[80%] p-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm md:text-base leading-relaxed shadow-md space-y-2">`;
+    let userContent = `<div class="max-w-[80%] p-4 rounded-2xl bg-slate-800/90 text-slate-100 border border-slate-700/50 text-sm md:text-base leading-relaxed shadow-md space-y-2">`;
     if (attachedFileBase64 && attachedFileMime.startsWith('image/')) {
         userContent += `<img src="data:${attachedFileMime};base64,${attachedFileBase64}" class="max-w-xs rounded-xl max-h-48 mb-2 border border-white/20">`;
     } else if (attachedFileBase64) {
@@ -127,7 +127,7 @@ function sendMessage() {
     const uniqueId = 'ai-' + Date.now();
     botWrapper.innerHTML = `
         <div id="${uniqueId}" class="max-w-[80%] dark:text-slate-200 text-slate-800 text-sm md:text-base leading-relaxed p-4 rounded-2xl bg-slate-900/40 border border-slate-900">
-            <span class="flex items-center gap-1.5 text-slate-500 italic font-mono text-xs"><i class="fas fa-circle-notch animate-spin text-purple-500"></i> Membaca data & lampiran...</span>
+            <span class="flex items-center gap-1.5 text-slate-500 italic font-mono text-xs"><i class="fas fa-circle-notch animate-spin text-emerald-400"></i> thinking...</span>
         </div>
     `;
     chatBox.appendChild(botWrapper);
@@ -148,7 +148,7 @@ function sendMessage() {
         let index = 0;
         
         const copyBtn = document.createElement('button');
-        copyBtn.className = 'absolute -bottom-6 left-0 text-[10px] font-mono bg-transparent hover:text-purple-400 transition-all cursor-pointer opacity-0 group-hover:opacity-100 text-slate-600';
+        copyBtn.className = 'absolute -bottom-6 left-0 text-[10px] font-mono bg-transparent hover:text-emerald-400 transition-all cursor-pointer opacity-0 group-hover:opacity-100 text-slate-600';
         copyBtn.innerHTML = '<i class="far fa-copy"></i> Copy Teks';
         copyBtn.onclick = () => {
             navigator.clipboard.writeText(fullText);
