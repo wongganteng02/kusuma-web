@@ -1024,38 +1024,59 @@ hero_1.serang(monster)</pre>
 
     <!-- ─── SECTION KOMENTAR ─── -->
       <section class="w-full max-w-6xl -mt-3 mx-auto px-4 py-8">
-        <div class="glasscard p-5 md:p-6 rounded-2xl border border-emerald-500/20 space-y-6">
-          
-          <!-- Header Komentar -->
+        <div
+          class="glasscard p-5 md:p-6 rounded-2xl border border-emerald-500/20 space-y-6"
+        >
           <div class="flex items-center justify-between gap-2">
             <h3 class="text-base md:text-lg font-bold text-white flex items-center gap-2 whitespace-nowrap">
-              <i class="fas fa-comments text-emerald-400"></i> Diskusi & Komentar
+              <i class="fas fa-comments text-emerald-400"></i> Diskusi &
+              Komentar
             </h3>
             <!-- Indicator Status Admin -->
-            <span id="adminBadge" class="hidden text-[10px] font-mono text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-2.5 py-1 rounded-lg shrink-0">
+            <span
+              id="adminBadge"
+              class="hidden text-[10px] font-mono text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-2.5 py-1 rounded-lg"
+            >
               <i class="fas fa-user-shield mr-1"></i>Admin
             </span>
           </div>
 
           <!-- Form Input Komentar Publik -->
-          <form id="commentForm" class="space-y-3">
-            <input 
-              type="text" 
-              id="commentName" 
-              placeholder="Nama Kamu..." 
+          <form
+            id="commentForm"
+            action="https://api.web3forms.com/submit"
+            method="POST"
+            class="space-y-3"
+          >
+            <input
+              type="hidden"
+              name="access_key"
+              value="628274fe-bb5a-49a2-a256-3a7b9b3eb906"
+            />
+
+            <input type="hidden" name="Halaman" value="Index" />
+
+            <input
+              type="text"
+              id="commentName"
+              name="Nama Pengirim"
+              placeholder="Nama Kamu..."
               required
               class="w-full bg-slate-950/80 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-xs text-slate-200 outline-none focus:border-emerald-500/50 font-mono"
             />
-            <textarea 
-              id="commentText" 
-              rows="3" 
-              placeholder="Tulis komentar kamu di sini..." 
+
+            <textarea
+              id="commentText"
+              name="Isi Komentar"
+              rows="3"
+              placeholder="Tulis komentar kamu di sini..."
               required
               class="w-full bg-slate-950/80 border border-emerald-500/20 rounded-xl p-4 text-xs text-slate-200 outline-none focus:border-emerald-500/50 font-mono resize-none custom-scroll"
             ></textarea>
-            <button 
-              type="submit" 
-              class="py-2.5 px-5 rounded-xl text-xs text-white font-extrabold bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-95 transition-all shadow-md flex items-center gap-2"
+
+            <button
+              type="submit"
+              class="py-2.5 px-5 rounded-xl text-xs text-white font-extrabold bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-95 transition-all shadow-md flex items-center gap-2 cursor-pointer"
             >
               <i class="fas fa-paper-plane"></i> Kirim Komentar
             </button>
@@ -1065,7 +1086,9 @@ hero_1.serang(monster)</pre>
 
           <!-- Daftar Komentar Publik -->
           <div id="commentsContainer" class="space-y-4">
-            <p class="text-xs text-slate-500 font-mono text-center">Memuat komentar...</p>
+            <p class="text-xs text-slate-500 font-mono text-center">
+              Memuat komentar...
+            </p>
           </div>
         </div>
       </section>
@@ -1083,8 +1106,23 @@ hero_1.serang(monster)</pre>
 
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-      import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        onSnapshot,
+        query,
+        orderBy,
+        deleteDoc,
+        doc,
+        serverTimestamp,
+        updateDoc,
+        arrayUnion,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyDxK8rFUKYe6kJrK2MUsxY_yylh75fxfN0",
@@ -1093,7 +1131,7 @@ hero_1.serang(monster)</pre>
         storageBucket: "kusumaweb-system.firebasestorage.app",
         messagingSenderId: "254017971517",
         appId: "1:254017971517:web:3a7c7ccbe3f9d6a76d9154",
-        measurementId: "G-JZMMG59MBE"
+        measurementId: "G-JZMMG59MBE",
       };
 
       const app = initializeApp(firebaseConfig);
@@ -1102,8 +1140,8 @@ hero_1.serang(monster)</pre>
 
       // Normalisasi pathname agar 'index.html' dan '/' dianggap sama
       let currentPage = window.location.pathname;
-      if (currentPage.endsWith('/') || currentPage === '') {
-        currentPage = '/index.html';
+      if (currentPage.endsWith("/") || currentPage === "") {
+        currentPage = "/index.html";
       }
 
       let isAdmin = false;
@@ -1111,7 +1149,10 @@ hero_1.serang(monster)</pre>
       // 1. Cek Status Admin (Render ulang komentar saat status admin terkonfirmasi)
       onAuthStateChanged(auth, (user) => {
         // ⚠️ Pastikan email ini SAMA PERSIS dengan email login admin kamu (huruf kecil/besar berpengaruh)
-        if (user && user.email.toLowerCase() === "kusumaweb0212@gmail.com".toLowerCase()) {
+        if (
+          user &&
+          user.email.toLowerCase() === "kusumaweb0212@gmail.com".toLowerCase()
+        ) {
           isAdmin = true;
           document.getElementById("adminBadge")?.classList.remove("hidden");
         } else {
@@ -1122,41 +1163,100 @@ hero_1.serang(monster)</pre>
         loadComments();
       });
 
+      // Fungsi untuk membalas komentar (Khusus Admin)
+      async function balasKomentar(commentId, teksBalasan) {
+        if (!teksBalasan.trim()) return;
+
+        try {
+          const commentRef = doc(db, "comments", commentId);
+
+          await updateDoc(commentRef, {
+            replies: arrayUnion({
+              sender: "Kusuma Web Dev",
+              text: teksBalasan,
+              timestamp: new Date().toISOString(), // 👈 Menyimpan tanggal & jam balasan dibuat
+            }),
+          });
+
+          console.log("Balasan berhasil terkirim!");
+        } catch (error) {
+          console.error("Gagal membalas:", error);
+          alert("Gagal membalas! Pastikan kamu sudah login sebagai Admin.");
+        }
+      }
+
+      window.balasKomentar = balasKomentar;
+
       // 2. Tambah Komentar
       const commentForm = document.getElementById("commentForm");
       if (commentForm) {
         commentForm.addEventListener("submit", async (e) => {
           e.preventDefault();
-          const name = document.getElementById("commentName").value.trim();
-          const text = document.getElementById("commentText").value.trim();
+
+          const nameInput = document.getElementById("commentName");
+          const textInput = document.getElementById("commentText");
+
+          const name = nameInput.value.trim();
+          const text = textInput.value.trim();
 
           if (!name || !text) return;
 
-          await addDoc(collection(db, "comments"), {
-            page: currentPage,
-            name: name,
-            text: text,
-            timestamp: serverTimestamp()
-          });
+          try {
+            // 1. Simpan ke Firebase Firestore dulu
+            await addDoc(collection(db, "comments"), {
+              page: currentPage,
+              name: name,
+              text: text,
+              timestamp: serverTimestamp(),
+            });
 
-          commentForm.reset();
+            // 2. Kirim Notifikasi Email via Web3Forms API
+            const emailPayload = {
+              access_key: "628274fe-bb5a-49a2-a256-3a7b9b3eb906", // Access key kamu
+              "Nama Pengirim": name,
+              "Isi Komentar": text,
+              "Halaman/Artikel": currentPage || window.location.pathname,
+            };
+
+            // Kirim data dalam format JSON
+            fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+              body: JSON.stringify(emailPayload),
+            })
+              .then((res) => res.json())
+              .then((data) => console.log("Status Email:", data))
+              .catch((err) => console.error("Gagal Notif Email:", err));
+
+            // 3. Reset Form setelah berhasil disimpan
+            commentForm.reset();
+          } catch (error) {
+            console.error("Eror Firebase/Komentar:", error);
+            alert("Gagal mengirim komentar!");
+          }
         });
       }
 
       // 3. Load & Render Komentar Realtime
       function loadComments() {
-        const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
-        
+        const q = query(
+          collection(db, "comments"),
+          orderBy("timestamp", "desc"),
+        );
+
         onSnapshot(q, (snapshot) => {
           const container = document.getElementById("commentsContainer");
           if (!container) return;
-          
+
           container.innerHTML = "";
 
           // Filter komentar sesuai halaman saat ini
-          const pageComments = snapshot.docs.filter(docSnap => {
+          const pageComments = snapshot.docs.filter((docSnap) => {
             let p = docSnap.data().page;
-            if (p && (p.endsWith('/') || p === '')) p = '/index.html';
+            if (p && (p.endsWith("/") || p === "")) p = "/index.html";
             return p === currentPage;
           });
 
@@ -1168,38 +1268,98 @@ hero_1.serang(monster)</pre>
           pageComments.forEach((docSnap) => {
             const data = docSnap.data();
             const commentId = docSnap.id;
-            
+
             let formattedTime = "";
             if (data.timestamp) {
               const dateObj = data.timestamp.toDate();
-              formattedTime = dateObj.toLocaleDateString("id-ID", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric"
-              }) + `, ${dateObj.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}`;
+              formattedTime =
+                dateObj.toLocaleDateString("id-ID", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                }) +
+                `, ${dateObj.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}`;
             } else {
-              formattedTime = "Baru saja"; // Untuk tampilan instant sebelum server merespon
+              formattedTime = "Baru saja";
+            }
+
+            // 1. Susun daftar balasan admin (LENGKAP DENGAN WAKTU & RATA KANAN)
+            let repliesHTML = "";
+            if (data.replies && data.replies.length > 0) {
+              data.replies.forEach((reply) => {
+                // Format Waktu Balasan Admin
+                let replyTimeFormatted = "";
+                if (reply.timestamp) {
+                  const replyDateObj = new Date(reply.timestamp);
+                  replyTimeFormatted =
+                    replyDateObj.toLocaleDateString("id-ID", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    }) +
+                    `, ${replyDateObj.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}`;
+                } else {
+                  replyTimeFormatted = "Baru saja";
+                }
+
+                repliesHTML += `
+                  <div class="mt-2.5 pl-3 pr-3 py-2 border-r-2 border-emerald-500/50 bg-slate-900/40 rounded-l-lg ml-auto max-w-[85%] text-right space-y-0.5">
+                    <div class="flex items-center justify-end gap-1.5 flex-wrap">
+                      <!-- Waktu Balasan Admin -->
+                      <span class="text-[9px] text-slate-500 font-mono">${replyTimeFormatted}</span>
+                      <!-- Badge Admin -->
+                      <span class="text-[8px] bg-emerald-500/10 text-emerald-400 px-1 rounded border border-emerald-500/20 font-mono">Admin</span>
+                      <!-- Nama Sender -->
+                      <span class="text-[10px] font-bold text-orange-300 font-mono">${reply.sender}</span>
+                    </div>
+                    <p class="text-xs text-slate-200 leading-relaxed">${reply.text}</p>
+                  </div>
+                `;
+              });
+            }
+
+            // 2. Form Input Balasan Admin (Rata Kanan)
+            let adminReplyFormHTML = "";
+            if (isAdmin) {
+              adminReplyFormHTML = `
+                <div class="mt-3 pt-2 border-t border-slate-800/80 flex justify-end gap-2">
+                  <input type="text" id="reply-input-${commentId}" placeholder="Balas komentar..." class="w-full bg-slate-900/80 text-xs text-slate-200 border border-slate-700/50 rounded-lg px-2.5 py-1 focus:outline-none focus:border-emerald-500/50 text-left" />
+                  <button onclick="kirimBalasan('${commentId}')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-1 rounded-lg transition-colors font-mono shrink-0">
+                    Balas
+                  </button>
+                </div>
+              `;
             }
 
             const card = document.createElement("div");
-            card.className = "inner-dark-box p-3.5 rounded-xl border border-emerald-500/10 flex justify-between items-start gap-3 my-2";
-            
-            const deleteBtnHTML = isAdmin 
+            // Tambahkan 'text-left' di sini agar komentar publik TERKUNCI RATA KIRI
+            card.className =
+              "inner-dark-box p-3.5 rounded-xl border border-emerald-500/10 my-2 text-left";
+
+            const deleteBtnHTML = isAdmin
               ? `<button onclick="deleteComment('${commentId}')" class="text-red-400 hover:text-red-300 text-xs p-1 transition-colors" title="Hapus Komentar">
                   <i class="fas fa-trash"></i>
-                </button>` 
-              : '';
+                </button>`
+              : "";
 
             card.innerHTML = `
-              <div class="space-y-1">
-                <div class="flex items-center gap-2">
-                  <span class="text-xs font-bold text-emerald-400 font-mono">${data.name}</span>
-                  <!-- Badge Tanggal & Jam -->
-                  <span class="text-[9px] text-slate-500 font-mono">${formattedTime}</span>
+              <!-- Komentar Publik (Rata Kiri) -->
+              <div class="flex justify-between items-start gap-3">
+                <div class="space-y-1 w-full text-left">
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs font-bold text-yellow-400 font-mono">${data.name}</span>
+                    <span class="text-[9px] text-slate-500 font-mono">${formattedTime}</span>
+                  </div>
+                  <p class="text-xs text-slate-300 leading-relaxed text-left">${data.text}</p>
                 </div>
-                <p class="text-xs text-slate-300 leading-relaxed">${data.text}</p>
+                ${deleteBtnHTML}
               </div>
-              ${deleteBtnHTML}
+
+              <!-- Wadah Balasan Admin (Muncul di Kanan) -->
+              ${repliesHTML}
+
+              <!-- Input Balasan Admin -->
+              ${adminReplyFormHTML}
             `;
 
             container.appendChild(card);
@@ -1207,7 +1367,16 @@ hero_1.serang(monster)</pre>
         });
       }
 
-      // 4. Fungsi Hapus Komentar Global
+      // 4. Fungsi Helper Kirim Balasan (Panggil fungsi utama balasKomentar)
+      window.kirimBalasan = function (commentId) {
+        const inputEl = document.getElementById(`reply-input-${commentId}`);
+        if (inputEl && inputEl.value.trim() !== "") {
+          balasKomentar(commentId, inputEl.value);
+          inputEl.value = ""; // Kosongkan input setelah dikirim
+        }
+      };
+
+      // 5. Fungsi Hapus Komentar Global
       window.deleteComment = async (id) => {
         if (confirm("Yakin ingin menghapus komentar ini secara permanen?")) {
           try {
