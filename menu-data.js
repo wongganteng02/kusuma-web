@@ -1,8 +1,8 @@
 const menuData = {
   projects: [
     {
-      judul: "Nexa AI Engine",
-      link: "/my-project/coaba.html",
+      judul: "Simulation",
+      link: "/my-project/coba.html",
       icon: "robot",
       color: "text-gray-400"
     }
@@ -10,18 +10,18 @@ const menuData = {
 
   aktifitas: [
     {
-      judul: "Workshop IoT 2026",
-      link: "/aktifitas/workshop-iot.html",
-      icon: "calendar-alt",
+      judul: "#",
+      link: "#",
+      icon: "#",
       color: "text-amber-400"
     }
   ],
 
   articles: [
     {
-      judul: "Tips Belajar Tailwind",
-      link: "/artikel/tips-tailwind.html",
-      icon: "newspaper",
+      judul: "#",
+      link: "#",
+      icon: "#",
       color: "text-sky-400"
     }
   ]
